@@ -8,18 +8,18 @@ import { useWeb3 } from '@/context/Web3Context';
 function PrivateRoute({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [passAuth, setPassAuth] = useState(false);
-  const { active, isLoading, account } = useWeb3();
+  const { isLoading, account, active } = useWeb3();
 
   useEffect(() => {
-    if (!active && !account && !isLoading) {
+    if (active && !account && !isLoading) {
       setPassAuth(false);
       router?.push(ROUTES.CONNECT_WALLET.path);
     } else {
       setPassAuth(true);
     }
-  }, [account, active, router, isLoading]);
+  }, [account, router, isLoading, active]);
 
-  if ((!active && !account) || isLoading)
+  if (!account || isLoading)
     return (
       <Spin
         size="large"

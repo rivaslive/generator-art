@@ -13,8 +13,9 @@ import config from '@/shared/config';
 import useModal from '@/shared/hooks/useModal';
 import ModalNetworkNotValid from '@/components/Molecules/ModalNetworkNotValid';
 import ModalNotExtension from '@/components/Molecules/ModalNotExtension';
+import storage from '@/shared/utils/storage';
 
-const { ETH_ROPSTEN_NETWORK_ID } = config;
+const { ETH_ROPSTEN_NETWORK_ID, connectKey } = config;
 
 type Network = {
   name: string;
@@ -57,6 +58,7 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
   } = useModal();
 
   // states
+  const [loading, setLoading] = useState<boolean>(true);
   const [network, setNetwork] = useState<Network | null>(null);
   const {
     active,
@@ -69,11 +71,14 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
   } = useEthers();
 
   // callbacks
-  const connect = useCallback(() => {
-    return activateBrowserWallet();
+  const connect = useCallback(async () => {
+    storage.setItem(connectKey, true);
+    await activateBrowserWallet();
+    return;
   }, [activateBrowserWallet]);
 
   const disconnect = useCallback(() => {
+    storage.setItem(connectKey, false);
     return deactivate();
   }, [deactivate]);
 
@@ -89,6 +94,16 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
   }, [account, active, isLoading]);
 
   // effects
+  useEffect(() => {
+    if (storage.getItem(connectKey)) {
+      connect().then(() => {
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
+    }
+  }, [connect]);
+
   useEffect(() => {
     if (chainId) {
       const net = networks.find((net) => net.chainId === chainId);
@@ -116,24 +131,25 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
   // return data
   const output = useMemo(() => {
     return {
-      isLoading: isLoading,
       connect,
       active,
       network,
       disconnect,
       switchNetwork,
       isActive,
+      isLoading: loading || isLoading,
       account: account || null,
     };
   }, [
-    isLoading,
-    connect,
-    active,
-    network,
-    disconnect,
-    switchNetwork,
-    isActive,
     account,
+    active,
+    connect,
+    disconnect,
+    isActive,
+    isLoading,
+    loading,
+    network,
+    switchNetwork,
   ]);
 
   return (

@@ -6,6 +6,7 @@ import { TitleStyle } from './style';
 type TitleProps = TitlePropsAntd & {
   color?: ColorType;
   margin?: string | number;
+  align?: AlignType;
   fontSize?: string | number;
   lineHeight?: string | number;
   fontWeight?: FontWeightType;
@@ -15,6 +16,7 @@ const Title = ({
   fontSize,
   lineHeight,
   fontWeight = 800,
+  align = 'left',
   color = 'text',
   margin = 'initial',
   ...restAntdProps
@@ -40,6 +42,7 @@ const Title = ({
     <TitleStyle
       {...restAntdProps}
       $color={color}
+      $align={align}
       $margin={formatMargin}
       $fontWeight={fontWeight}
       $fontSize={formatFontSize}

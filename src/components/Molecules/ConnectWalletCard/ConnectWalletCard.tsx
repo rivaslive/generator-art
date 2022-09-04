@@ -3,8 +3,9 @@ import { CreditCardOutlined } from '@ant-design/icons';
 import Text from '@/components/Atoms/Text';
 import Button from '@/components/Atoms/Button';
 import { useWeb3 } from '@/context/Web3Context';
+import WrapperWithBorder from '@/components/Atoms/WrapperWithBorder';
 
-import { CardWrapperStyle, CardIconStyle, StyleContent } from './style';
+import { CardIconStyle, StyleContent } from './style';
 
 type ConnectWalletCardProps = {};
 
@@ -12,7 +13,7 @@ const ConnectWalletCard = (props: ConnectWalletCardProps) => {
   const { connect } = useWeb3();
 
   return (
-    <CardWrapperStyle>
+    <WrapperWithBorder>
       <StyleContent>
         <CardIconStyle>
           <CreditCardOutlined />
@@ -24,7 +25,7 @@ const ConnectWalletCard = (props: ConnectWalletCardProps) => {
           Connect wallet
         </Button>
       </StyleContent>
-    </CardWrapperStyle>
+    </WrapperWithBorder>
   );
 };
 

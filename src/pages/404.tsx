@@ -21,8 +21,10 @@ function NotFound() {
         }}
       >
         <Title fontWeight={800}>404 NOT FOUND</Title>
-        <Link href={ROUTES.DASHBOARD.path}>
-          <Button margin="25px 0">Go to safe page</Button>
+        <Link href={ROUTES.DASHBOARD.path} passHref>
+          <a>
+            <Button margin="25px 0">Go to safe page</Button>
+          </a>
         </Link>
       </div>
     </div>

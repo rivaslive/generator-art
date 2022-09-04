@@ -17,6 +17,9 @@ const ROUTES = {
   DASHBOARD: {
     path: '/',
   },
+  NEW_SURVEY: {
+    path: '/complete-survey',
+  },
 };
 
 export default ROUTES;
