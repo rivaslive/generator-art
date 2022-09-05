@@ -34,7 +34,8 @@ const SurveyTemplate = (props: SurveyTemplateProps) => {
     router.push(ROUTES.DASHBOARD.path).then();
   };
 
-  if (isLoading) return <Spin size="large" />;
+  if (isLoading)
+    return <Spin style={{ margin: '30px auto', display: 'block' }} size="large" />;
   if (!survey)
     return (
       <Container size="small">
