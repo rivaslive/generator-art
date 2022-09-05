@@ -2,7 +2,7 @@ import { Spin } from 'antd';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
 
-import ROUTES from '@/routes';
+import ROUTES from '@/config/routes';
 import { useWeb3 } from '@/context/Web3Context';
 
 function PublicRoute({ children }: { children: ReactNode }) {

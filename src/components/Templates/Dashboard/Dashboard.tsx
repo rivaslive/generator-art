@@ -3,7 +3,7 @@ import { useWeb3 } from '@/context/Web3Context';
 import { useTokenBalance } from '@usedapp/core';
 import { PlusOutlined } from '@ant-design/icons';
 
-import ROUTES from '@/routes';
+import ROUTES from '@/config/routes';
 import Button from '@/components/Atoms/Button';
 import { surveyToken } from '@/config';
 import { formatEth } from '@/shared/utils/format';

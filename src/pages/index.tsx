@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Layout from '@/components/Organisms/Layout';
 import PrivateRoute from '@/shared/layout/PrivateRoute';
 import DashboardTemplate from '@/components/Templates/Dashboard';
@@ -5,6 +6,9 @@ import DashboardTemplate from '@/components/Templates/Dashboard';
 function DashboardPage() {
   return (
     <Layout>
+      <Head>
+        <title>Membrane test - Dashboard</title>
+      </Head>
       <PrivateRoute>
         <DashboardTemplate />
       </PrivateRoute>

@@ -6,7 +6,11 @@
     "incremental": true,
     "moduleResolution": "node",
     "strict": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@/public": ["../public/*"]
+    }
   },
   "include": ["**/*.js", "**/*.jsx"]
 }

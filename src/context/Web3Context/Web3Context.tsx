@@ -7,31 +7,14 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { JsonRpcProvider } from '@ethersproject/providers';
 import { useEthers, DEFAULT_SUPPORTED_CHAINS } from '@usedapp/core';
 
-import storage from '@/shared/utils/storage';
 import useModal from '@/hooks/useModal';
+import storage from '@/shared/utils/storage';
 import { ETH_ROPSTEN_NETWORK_ID, connectKey } from '@/config';
 import ModalNotExtension from '@/components/Molecules/ModalNotExtension';
 import ModalNetworkNotValid from '@/components/Molecules/ModalNetworkNotValid';
-
-type Network = {
-  name: string;
-  chainId: number;
-};
-
-type Web3ContextType = {
-  active: boolean;
-  isActive: boolean;
-  provider?: JsonRpcProvider;
-  account: string | null;
-  isLoading: boolean;
-  network: Network | null;
-  connect: () => void;
-  disconnect: () => void;
-  switchNetwork: (chainId: number) => Promise<void>;
-};
+import type { Network, Web3ContextType } from './types';
 
 const defaultContext: Web3ContextType = {
   active: false,

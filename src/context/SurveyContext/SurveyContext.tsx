@@ -10,7 +10,7 @@ import {
 import { Contract } from 'ethers';
 import { useRouter } from 'next/router';
 
-import ROUTES from '@/routes';
+import ROUTES from '@/config/routes';
 import { useWeb3 } from '@/context/Web3Context';
 import { ETH_ROPSTEN_NETWORK_ID, surveyToken } from '@/config';
 import { Answer, Quiz, STEP_SURVEY_ENUM, SurveyContextType } from './types';

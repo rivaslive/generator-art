@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Result, Spin } from 'antd';
 import { useRouter } from 'next/router';
-import ROUTES from '@/routes';
+import ROUTES from '@/config/routes';
 
 import Button from '@/components/Atoms/Button';
 import Title from '@/components/Atoms/Title';

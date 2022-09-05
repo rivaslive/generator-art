@@ -1,24 +1,63 @@
-# create-rivas-react
+# Membrane test | Sr. Frontend Developer
 
-**create-rivas-react** is a boilerplate to create reactjs or nextjs projects, with its different versions, Nextjs, Vitejs and create-react-app, all these projects implement an Atomic Design architecture together with a considerable amount of pre-built Atoms that They tend to be super used elements like Text, Text, Button, Container, Grid, etc...
+This project was created with [Nextjs](https://nextjs.org/)
 
-All project generated for **create-rivas-react** can be with <span style="color: #f0db4f">javascript</span> or <span style="color: #3178C6">typescript</span>.
+# Requirements:
+- Next.js (preferred), CRA or custom webpack for the front end infrastructure, taking into
+account for the architecture of the project hierarchy and organization of directories,
+routing, conventions and good practices of clean code, good design patterns for the app
+itself but also for the react components 
+- For the app state, Mobx State Tree (preferred) or React Hooks 
+- Ant Design for components (plus)
+- Add a descriptive “readme” file, it should also include links to any resources and
+documentation used to solve the challenge.
 
-## What benefits do you have?
+## What does this project/test do?
 
-- <span style="color: #61DBFB">Reactjs</span> or <b>Nextjs</b>
-- Atomic Design (Architecture)
-- styled-components or Stitches(Coming Soon!)
-- Pre build components ready for use
-- Nextjs, Vitejs or create-react-app
-- <span style="color: #f0db4f">javascript</span> or <span style="color: #3178C6">typescript</span>
-- AuthProvider
-- ThemeProvider
-- Vitejs fixed absolute paths and support for proccess.env
-- create-react-app support for styled-components displayName
-- Nextjs support for styled-components displayName
+- Connect Metamask wallet
+- Ensure user is connected to Ropsten and if not show a button to switch networks
+automatically.
+- Show balance of $QUIZ token (address below).
+- Once the page is loaded, present the title of the daily trivia with its picture and a button
+that allows you to begin answering.
+- Once the survey starts, display the current question, which will be available for the amount
+of seconds in the lifetimeSeconds property.
+- Answered or not it should move onto the next question.
+- Once all the questions are finished, show an overview with all the answers.
+- Show a button to submit the questions to the validator contract
+- Refresh the balance of $QUIZ
 
-# Run Project
+# Resources
+1. [Survey contract repo](https://github.com/rather-labs/blockchain-challenge-utils)
+2. [Survey sample](https://github.com/rather-labs/blockchain-challenge-utils/blob/main/survey-sample.json)
+3. [$QUIZ Token in ropsten](https://ropsten.etherscan.io/address/0x74f0b668ea3053052deaa5eedd1815f579f0ee03#readContract)
+4. [Antd](https://ant.design/)
+
+# Configure Project
+Create a new file named **.env** in the root project directory.
+Introduce the next vars:
+
+```dotenv
+NEXT_PUBLIC_TOKEN_ADDRESS=0x74F0B668Ea3053052DEAa5Eedd1815f579f0Ee03
+# Optional env var
+NEXT_PUBLIC_INFURA_ETH_KEY=your_infura_api_key
+```
+
+1. The direction 0x74F0B668Ea3053052DEAa5Eedd1815f579f0Ee03 is the contract upload in Ropsten Network in Etherscan https://ropsten.etherscan.io/address/0x74f0b668ea3053052deaa5eedd1815f579f0ee03#readContract
+
+2. NEXT_PUBLIC_INFURA_ETH_KEY is a optional var, used in prod like required.
+
+Now install the dependencies using the next command in terminal
+
+    yarn install
+
+or
+
+    npm install
+
+
+# Start Project
+Run:
 
     yarn dev
 
@@ -26,65 +65,61 @@ or
 
     npm run dev
 
-# How can I create a new project??
 
-    npx create-rivas-react
+# Important things
 
-or
+You have the next extensions in your editor (like vsCode, Atom, vim, etc.)
+1. [editorConfig](https://editorconfig.org/)
+2. [eslint](https://eslint.org/)
+3. [prettier](https://prettier.io/)
 
-    npx create-rivas-react [name] [template] [language] [styled-lib]
+> **_NOTE:_**  In addition to having these extensions installed, make sure they are active and working properly.
 
-- [name]: Name of the project
-- [template]: Template to use, can be: vitejs | Vitejs | Vite | vite | nextjs | Nextjs | next | Next | cra | create-react-app
-- [language]: Language to use, can be: javascript | js | jsx | --js | --jsx | typescript | ts | tsx | --ts | --tsx
-- [styled-lib]: Styled-lib to use, can be: styled-components | sc | --sc | stitches | --stitches
+# This project used some libs like:
 
-example:
+1. [styled-components](https://styled-components.com/)
+2. [antd](https://ant.design/)
+3. [useDapp](https://usedapp.io/)
+4. [ethers](https://docs.ethers.io/v5/)
 
-I am automatically resolving the names, so you can enter the app name with spaces.
-
-    npx create-rivas-react my-first-app
-
-    npx create-rivas-react my-first-app vitejs
-
-    npx create-rivas-react my-first-app nextjs --js
-
-    npx create-rivas-react my-first-app nextjs --ts --styled
-
-## Pre Build components
+# Architecture in the project
+This project was created with [Atomic Design Pattern](https://bradfrost.com/blog/post/atomic-web-design/)
+Some of the components are:
 
 ### Atoms
-
-- Text
-- Text
 - Button
 - Container
-- Grid
-  - Row
-  - Col
-- Checkbox
-- GoogleButton
-- Input
+- GroupOption
 - Image
-- Form
-  - Form
-  - FormItem
+- MenuWrapper
+- Modal
+- Text
+- Title
+- WrapperWithBorder
+- Input
 - Loading
 
 ## Molecules
-
-- HeadAllComponents
+- AccountAndNetwork
+- BalanceToken
+- ConnectWalletCard
+- MenuPersonalLinks
+- ModalNetworkNotValid
+- ModalNotExtension
 
 ## Organisms
-
-- AllComponents
+- Layout
+- Navbar
+- QuizPresentation
+- SurveyQuestion
+- SurveyResult
 
 ## Templates
+- ConnectWallet
+- Dashboard
+- Survey
 
-- Home
-
-## Hooks
-
+## Custom Hooks
 - useModal: Hook for admin open modal, toggleState, closeModal, openModal.
 
       const {
@@ -94,220 +129,56 @@ I am automatically resolving the names, so you can enter the app name with space
         toggleModal
       } = useModal();
 
-- useScrollPosition: Hook for return scroll to bottom, util for change navbar in to scroll.
+- useTime: Hook countdown.
 
-       const { detached } = useScrollPosition();
-
-- useStorage: Hook for save data in localStorage or sessionStorage.
-
-       const KEY_TO_SAVE = 'data-store';
-       const type = 'local'; // or 'session'
-       const { setItem, getItem, removeItem } = useStorage(KEY_TO_SAVE, { type });
-
-## Utils
-
-- storage: Function that returns setItem, getItem, removeItem, useful to store data in localStore and parse data to save;
-
-      import { storage } from '@/utils/storage'
+       const time = 30; // 30 seconds
+       const startImmediately = true; // Optional - Start immediately on hook load 
+       const { setItem, getItem, removeItem } = useTime(time, startImmediately);
 
 ## File System Tree
-
-There may be light differences in pages if the project is built in Nextjs or Vitejs/CRA
-
-### Javascript
-
-```
-.
-├── README.md
-├── jsconfig.json
-├── next.config.js                  # optional if project is with Nextjs
-├── package.json
-├── public
-│ ├── favicon.ico
-│ ├── logo-dark.svg
-│ └── logo.svg
-└── src
-    ├── components
-    │ ├── Atoms
-    │ │ ├── Button
-    │ │ │ ├── Button.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ ├── Checkbox
-    │ │ │ ├── Checkbox.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ ├── Container
-    │ │ │ ├── Config.js
-    │ │ │ ├── Container.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ ├── Form
-    │ │ │ ├── Form.jsx
-    │ │ │ ├── FormItem.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ ├── GoogleButton
-    │ │ │ ├── GoogleButton.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ ├── Grid
-    │ │ │ ├── Col.jsx
-    │ │ │ ├── Row.jsx
-    │ │ │ ├── RowContext.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── responsiveObserve.js
-    │ │ ├── Input
-    │ │ │ ├── Input.jsx
-    │ │ │ ├── Search.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ ├── Loading
-    │ │ │ ├── Loading.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ ├── Text
-    │ │ │ ├── Text.jsx
-    │ │ │ ├── index.js
-    │ │ │ └── style.js
-    │ │ └── Text
-    │ │     ├── Text.jsx
-    │ │     ├── index.js
-    │ │     └── style.js
-    │ ├── Molecules
-    │ │ └── HeadAllComponents
-    │ │     ├── HeadAllComponents.jsx
-    │ │     └── index.js
-    │ ├── Organisms
-    │ │ └── AllComponents
-    │ │     ├── AllComponents.jsx
-    │ │     ├── index.js
-    │ │     └── style.js
-    │ └── Template
-    │     └── Home
-    │         ├── Home.jsx
-    │         ├── index.js
-    │         └── style.js
-    ├── config
-    │ └── routes.js
-    ├── context
-    │ ├── AppTheme.jsx
-    │ └── AuthContext.jsx
-    ├── hooks
-    │ │ ├── useFlexGapSupport.js
-    │ │ ├── useModal.js
-    │ │ ├── useScrollPosition.js
-    │ │ └── useStorage.js
-    ├── layout
-    │ ├── PrivateRoute.jsx
-    │ └── PublicRoute.jsx
-    ├── pages
-    │ ├── 404.jsx
-    │ ├── _app.jsx                     # optional if project is with Nextjs
-    │ ├── _document.jsx                # optional if project is with Nextjs
-    │ ├── app
-    │ │ └── index.jsx
-    │ ├── auth
-    │ │ └── Logout.jsx
-    │ └── index.jsx
-    ├── styles
-    │ ├── global.js
-    │ ├── grid.css
-    │ └── theme.js
-    └── utils
-        └── storage.js
-```
-
-### Typescript
 
 ```
 .
 ├── README.md
 ├── tsconfig.json
-├── tsconfig.node.json
-├── jsconfig.json
-├── next-env.d.ts                        # optional if project is with Nextjs
-├── next.config.js                       # optional if project is with Nextjs
-├── package.json
-├── public
-│ ├── favicon.ico
-│ ├── logo-dark.svg
-│ └── logo.svg
 └── src
     ├── components
     │ ├── Atoms
     │ │ ├── Button
     │ │ │ ├── Button.tsx
-    │ │ │ ├── index.ts
+    │ │ │ ├── routes.ts
     │ │ │ └── style.ts
-    │ │ ├── Checkbox
-    │ │ │ ├── Checkbox.tsx
-    │ │ │ ├── index.ts
+    │ │ ├── ...
+    │ ├── Molecules
+    │ │ ├── AccountAndNetwork
+    │ │ │ ├── AccountAndNetwork.tsx
+    │ │ │ ├── routes.ts
     │ │ │ └── style.ts
-    │ │ ├── Container
-    │ │ │ ├── Config.ts
-    │ │ │ ├── Container.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── style.ts
-    │ │ ├── Form
-    │ │ │ ├── Form.tsx
-    │ │ │ ├── FormItem.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── style.ts
-    │ │ ├── GoogleButton
-    │ │ │ ├── GoogleButton.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── style.ts
-    │ │ ├── Grid
-    │ │ │ ├── Col.tsx
-    │ │ │ ├── Row.tsx
-    │ │ │ ├── RowContext.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── responsiveObserve.ts
-    │ │ ├── Image
-    │ │ │ ├── Imagen.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── style.ts
-    │ │ ├── Input
-    │ │ │ ├── Input.tsx
-    │ │ │ ├── Search.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── style.ts
-    │ │ ├── Loading
-    │ │ │ ├── Loading.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── style.ts
-    │ │ ├── Text
-    │ │ │ ├── Text.tsx
-    │ │ │ ├── index.ts
-    │ │ │ └── style.ts
-    │ │ └── Text
-    │ │     ├── Text.tsx
-    │ │     ├── index.ts
-    │ │     └── style.ts
-    │ └── Molecules
+    │ │ ├── ...
     │ ├── Organisms
-    │ │ └── AllComponents
-    │ │     ├── AllComponents.tsx
-    │ │     ├── index.ts
+    │ │ └── Layout
+    │ │     ├── Layout.tsx
+    │ │     ├── routes.ts
     │ │     └── style.ts
-    │ └── Template
-    │     └── Home
-    │         ├── Home.tsx
-    │         └── index.ts
+    │ ├── Template
+    │ │ └── ConnectWallet
+    │ │     ├── ConnectWallet.tsx
+    │ │     ├── routes.ts
+    │ │     └── style.ts
     ├── config
-    │ └── routes.ts
+    │ ├── abi.json                              # abi for generate interfaz with ethers.js
+    │ ├── routes.ts
+    │ └── index.ts
     ├── context
-    │ ├── AppTheme.tsx
-    │ └── AuthContext.tsx
+    │ ├── SurveyConext
+    │ └── Web3Context
     ├── hooks
-    │ ├── useFlexGapSupport.ts
     │ ├── useModal.ts
-    │ ├── useScrollPosition.ts
-    │ └── useStorage.ts
-    ├── layout
-    │ ├── PrivateRoute.tsx
-    │ └── PublicRoute.tsx
+    │ └── useTime.ts
+    │ ├── shared
+    │ │ └── layout
+    │ │     ├── PrivateRoute.tsx
+    │ │     └── PublicRoute.tsx
     ├── pages
     │ ├── 404.tsx
     │ ├── _app.tsx                               # optional if project is with Nextjs
@@ -316,12 +187,11 @@ There may be light differences in pages if the project is built in Nextjs or Vit
     │ ├── auth
     │ │ └── Logout.tsx
     │ └── index.tsx
-    ├── styles
-    │ ├── global.ts
-    │ ├── grid.css
-    │ └── theme.ts
-    └── utils
-        └── storage.ts
+    └── styles
+        ├── antd.less
+        ├── global.ts
+        └── theme.ts
+   
 ```
 
-Created with love ❤️ by **rivaslive**
+Created with love ❤️ by [**rivaslive**](https://www.kevin-rivas.com/)

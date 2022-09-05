@@ -6,7 +6,7 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
-import ROUTES from '@/routes';
+import ROUTES from '@/config/routes';
 import MenuItem from './MenuItem';
 import MenuWrapper from '@/components/Atoms/MenuWrapper';
 import Text from '@/components/Atoms/Text';

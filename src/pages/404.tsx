@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import ROUTES from '@/routes';
+import ROUTES from '@/config/routes';
 import Title from '@/components/Atoms/Title';
 import Button from '@/components/Atoms/Button';
 
