@@ -1,14 +1,16 @@
-import { Spin } from 'antd';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Result, Spin } from 'antd';
+import { useRouter } from 'next/router';
+import ROUTES from '@/routes';
+
+import Button from '@/components/Atoms/Button';
+import Title from '@/components/Atoms/Title';
 import Container from '@/components/Atoms/Container';
 import SurveyResult from '@/components/Organisms/SurveyResult';
 import SurveyQuestion from '@/components/Organisms/SurveyQuestion';
 import { useSurvey, STEP_SURVEY_ENUM } from '@/context/SurveyContext';
 import QuizPresentation from '@/components/Organisms/QuizPresentation';
-import Title from '@/components/Atoms/Title';
-import Link from 'next/link';
-import ROUTES from '@/routes';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 
 type SurveyTemplateProps = BaseComponent & {};
 
@@ -35,12 +37,25 @@ const SurveyTemplate = (props: SurveyTemplateProps) => {
   if (isLoading) return <Spin size="large" />;
   if (!survey)
     return (
-      <Title>
-        Not survey available, try after.{' '}
-        <Link href={ROUTES.DASHBOARD.path} passHref>
-          <a>Go to dashboard</a>
-        </Link>
-      </Title>
+      <Container size="small">
+        <Result
+          status={404}
+          title={
+            <Title align="center" fontSize="2rem">
+              Not survey available, try after.
+            </Title>
+          }
+          extra={
+            <Link href={ROUTES.DASHBOARD.path} passHref>
+              <a>
+                <Button margin="0 auto" bgColor="infoOpacity" color="primary">
+                  Go to dashboard
+                </Button>
+              </a>
+            </Link>
+          }
+        />
+      </Container>
     );
 
   return (

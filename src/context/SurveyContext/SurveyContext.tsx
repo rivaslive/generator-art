@@ -6,11 +6,9 @@ import {
   useEffect,
   useMemo,
   useState,
-  useTransition,
 } from 'react';
 import { Contract } from 'ethers';
 import { useRouter } from 'next/router';
-import { ERC20Interface } from '@usedapp/core';
 
 import ROUTES from '@/routes';
 import { useWeb3 } from '@/context/Web3Context';
@@ -40,7 +38,7 @@ export const SurveyProvider = ({ children }: { children: ReactNode }) => {
   // states
   const [answers, setAnswer] = useState<Answer[]>([]);
   const [data, setData] = useState<Quiz | null>(null);
-  const [isLoading, startTransition] = useTransition();
+  const [isLoading, setLoading] = useState<boolean>(true);
   const [step, setStep] = useState<STEP_SURVEY_ENUM>(STEP_SURVEY_ENUM.INIT);
 
   // callbacks
@@ -101,10 +99,9 @@ export const SurveyProvider = ({ children }: { children: ReactNode }) => {
   }, [account, network, network?.chainId, router]);
 
   useEffect(() => {
-    startTransition(() => {
-      fetchDailyTrivia().then((trivia) => {
-        trivia && setData(trivia);
-      });
+    fetchDailyTrivia().then((trivia) => {
+      trivia && setData(trivia);
+      setLoading(false);
     });
   }, [fetchDailyTrivia]);
 
