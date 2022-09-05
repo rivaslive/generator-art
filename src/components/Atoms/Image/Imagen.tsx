@@ -32,7 +32,6 @@ const Image = forwardRef<HTMLDivElement, ImageProps>(
           alt={alt}
           src={src}
           width={width}
-          loading="lazy"
           height={height}
           style={{ objectFit }}
           {...rest}

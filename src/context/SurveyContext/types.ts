@@ -3,6 +3,7 @@ export type OptionQuestion = {
 };
 
 export type Question = {
+  id: number;
   text: string;
   image: string;
   lifetimeSeconds: number;
@@ -16,10 +17,27 @@ export enum STEP_SURVEY_ENUM {
   FINISH,
 }
 
-export type SurveyContextType = {
+export type Answer = {
+  question: string;
+  questionId: number;
+  image: string;
+  answer: string;
+  answerId: number;
+};
+
+export type Quiz = {
+  id: number;
   title: string;
   image: string;
-  startQuiz: () => void;
-  step: STEP_SURVEY_ENUM,
   questions: Question[];
+};
+
+export type SurveyContextType = {
+  answers: Answer[];
+  startQuiz: () => void;
+  step: STEP_SURVEY_ENUM;
+  survey: Quiz | null;
+  isLoading: boolean;
+  onCompletedSurvey: (answers: Answer[]) => void;
+  onSubmitSurvey: () => Promise<{ data: any | null; error: null | string }>;
 };

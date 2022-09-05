@@ -1,13 +1,11 @@
 import { Dropdown } from 'antd';
+import { CreditCardOutlined } from '@ant-design/icons';
 
-import config from '@/shared/config';
 import { useWeb3 } from '@/context/Web3Context';
+import { ETH_ROPSTEN_NETWORK_ID } from '@/config';
 
 import menu from './menu';
 import { AccountTextStyle, ButtonStyle, ImageStyle } from './style';
-import { CreditCardOutlined } from '@ant-design/icons';
-
-const { ETH_ROPSTEN_NETWORK_ID } = config;
 
 const AccountAndNetwork = (props: BaseComponent) => {
   const { switchNetwork, network, account } = useWeb3();
@@ -39,7 +37,11 @@ const AccountAndNetwork = (props: BaseComponent) => {
           )
         }
       >
-        <AccountTextStyle $width={isRopstenNet ? 100 : 150} fontSize="13px" fontWeight={700}>
+        <AccountTextStyle
+          $width={isRopstenNet ? 100 : 150}
+          fontSize="13px"
+          fontWeight={700}
+        >
           {isRopstenNet ? account : 'Select Ropsten Network'}
         </AccountTextStyle>
       </ButtonStyle>

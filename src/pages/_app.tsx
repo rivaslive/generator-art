@@ -6,13 +6,11 @@ import { DAppProvider } from '@usedapp/core';
 // locals imports
 import GlobalStyle from '@/styles/global';
 import { themeVars } from '@/styles/theme';
-import config from '@/shared/config';
+import { configWeb3 } from '@/config';
+import { Web3Provider } from '@/context/Web3Context';
 
 // styles
 import '@/styles/antd.less';
-import { Web3Provider } from '@/context/Web3Context';
-
-const { configWeb3 } = config;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

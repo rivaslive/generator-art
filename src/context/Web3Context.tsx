@@ -7,15 +7,14 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { JsonRpcProvider } from '@ethersproject/providers';
 import { useEthers, DEFAULT_SUPPORTED_CHAINS } from '@usedapp/core';
 
-import config from '@/shared/config';
-import useModal from '@/shared/hooks/useModal';
-import ModalNetworkNotValid from '@/components/Molecules/ModalNetworkNotValid';
-import ModalNotExtension from '@/components/Molecules/ModalNotExtension';
 import storage from '@/shared/utils/storage';
-
-const { ETH_ROPSTEN_NETWORK_ID, connectKey } = config;
+import useModal from '@/hooks/useModal';
+import { ETH_ROPSTEN_NETWORK_ID, connectKey } from '@/config';
+import ModalNotExtension from '@/components/Molecules/ModalNotExtension';
+import ModalNetworkNotValid from '@/components/Molecules/ModalNetworkNotValid';
 
 type Network = {
   name: string;
@@ -25,6 +24,7 @@ type Network = {
 type Web3ContextType = {
   active: boolean;
   isActive: boolean;
+  provider?: JsonRpcProvider;
   account: string | null;
   isLoading: boolean;
   network: Network | null;
@@ -66,6 +66,7 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
     account,
     chainId,
     deactivate,
+    library,
     activateBrowserWallet,
     switchNetwork: ethSwitchNetwork,
   } = useEthers();
@@ -129,7 +130,7 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
   }, [openModalNotExt]);
 
   // return data
-  const output = useMemo(() => {
+  const output = useMemo<Web3ContextType>(() => {
     return {
       connect,
       active,
@@ -137,6 +138,7 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
       disconnect,
       switchNetwork,
       isActive,
+      provider: library,
       isLoading: loading || isLoading,
       account: account || null,
     };
@@ -149,6 +151,7 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
     isLoading,
     loading,
     network,
+    library,
     switchNetwork,
   ]);
 

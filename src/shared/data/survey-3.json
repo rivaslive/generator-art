@@ -1,0 +1,55 @@
+{
+  "id": 3,
+  "title": "Entertainment Survey",
+  "image": "https://images.pexels.com/photos/1782146/pexels-photo-1782146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "questions": [
+    {
+      "text": "Who is the Youtuber with the most english speaking subscribers?",
+      "image": "https://media.glamour.mx/photos/61908009a6e030d6480fb7fa/1:1/w_1575,h_1575,c_limit/208307.jpg",
+      "lifetimeSeconds": 12,
+      "options": [
+        {
+          "text": "Tfue"
+        },
+        {
+          "text": "Pewdiepie"
+        },
+        {
+          "text": "Mr Beats"
+        }
+      ]
+    },
+    {
+      "text": "What is the best-selling console of 2022?",
+      "image": "https://i0.wp.com/www.ofertasahora.com/wp-content/uploads/2021/08/Ofertas-SONY-Play-Station-5-en-alamcenes-omnisport-el-salvador-2021.jpg?ssl=1",
+      "lifetimeSeconds": 15,
+      "options": [
+        {
+          "text": "XBox Series X"
+        },
+        {
+          "text": "Play Station 5"
+        },
+        {
+          "text": "Nintendo Switch"
+        }
+      ]
+    },
+    {
+      "text": "Which of these is an anime?",
+      "image": "https://img1.ak.crunchyroll.com/i/spire3/09211a5ab1a7a41cbd18c90b1c8f076b1641869179_full.jpg",
+      "lifetimeSeconds": 8,
+      "options": [
+        {
+          "text": "Shrek"
+        },
+        {
+          "text": "Alice in wonderland"
+        },
+        {
+          "text": "Kimetsu No Yaiba"
+        }
+      ]
+    }
+  ]
+}

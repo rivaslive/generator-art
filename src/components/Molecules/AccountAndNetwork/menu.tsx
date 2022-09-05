@@ -3,9 +3,9 @@ import { CopyOutlined } from '@ant-design/icons';
 import type { Network } from '@ethersproject/networks';
 import { ItemType, MenuDividerType } from 'antd/es/menu/hooks/useItems';
 
-import config from '@/shared/config';
 import Text from '@/components/Atoms/Text';
 import Button from '@/components/Atoms/Button';
+import { ETH_ROPSTEN_NETWORK_ID } from '@/config';
 import {
   AccountImageStyle,
   AccountTextStyle,
@@ -13,8 +13,6 @@ import {
   DotStyle,
   MenuWrapperStyle,
 } from './style';
-
-const { ETH_ROPSTEN_NETWORK_ID } = config;
 
 type SwitchNetworkProps = (chanId: number) => void;
 

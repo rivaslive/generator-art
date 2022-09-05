@@ -1,3 +1,6 @@
+import { Alert } from 'antd';
+import { ReactNode } from 'react';
+
 import Image from '@/components/Atoms/Image';
 import Title from '@/components/Atoms/Title';
 import Button from '@/components/Atoms/Button';
@@ -6,10 +9,21 @@ import { QuizPresentationStyle } from './style';
 type QuizProps = BaseComponent & {
   image: string;
   title: string;
-  onStart: () => void;
+  error?: string;
+  btnText?: string;
+  extra?: ReactNode;
+  callback?: () => void;
 };
 
-const QuizPresentation = ({ image, title, onStart, ...props }: QuizProps) => {
+const QuizPresentation = ({
+  image,
+  title,
+  callback,
+  error,
+  extra,
+  btnText = 'Start Survey',
+  ...props
+}: QuizProps) => {
   return (
     <QuizPresentationStyle {...props}>
       <Image
@@ -19,9 +33,15 @@ const QuizPresentation = ({ image, title, onStart, ...props }: QuizProps) => {
         style={{ margin: '0 auto', display: 'block' }}
       />
       <Title align="center">{title}</Title>
-      <Button onClick={onStart} margin="20px auto">
-        Start Survey
-      </Button>
+      {callback && (
+        <Button onClick={callback} margin="20px auto 0">
+          {btnText}
+        </Button>
+      )}
+      {extra}
+      {error && (
+        <Alert style={{ marginTop: 20 }} type="error" message={error} />
+      )}
     </QuizPresentationStyle>
   );
 };

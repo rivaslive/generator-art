@@ -16,9 +16,12 @@ export const colors = {
   bgCard: 'rgba(100, 100, 200, 0.3)',
   nav: 'rgba(0, 0, 0, .5)',
   input: '#161616',
+  disabled: 'rgba(255, 255, 255, 0.08)',
+  disabledText: 'rgba(255, 255, 255, 0.3)',
   borderColor: '#313538',
   shadowInput: 'rgb(77, 77, 77)',
   infoOpacity: '#0d273b',
+  errorOpacity: '#300313',
 };
 
 export type ColorType = keyof typeof colors;

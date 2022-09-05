@@ -11,18 +11,24 @@ export const WrapperStyle = styled(WrapperWithBorder)`
   }
 `;
 
-export const ContentStyle = styled.div``;
+export const ContentStyle = styled.div`
+  padding-bottom: 100px;
+  width: 100%;
+`;
 
 export const ContentFooterStyle = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 5px 20px;
+  width: 100%;
+  padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
 
   ${mediaQueries.tablet} {
-    padding: 5px 40px;
+    padding: 15px 40px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
   }
 `;

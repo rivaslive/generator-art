@@ -1,0 +1,55 @@
+{
+  "id": 1,
+  "title": "Music Survey",
+  "image": "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "questions": [
+    {
+      "text": "Who Asked \"What Have You Done For Me Lately\" In 1986?",
+      "image": "https://i1.sndcdn.com/artworks-bQC2CdnLW6mxvVCw-myOPNw-t500x500.jpg",
+      "lifetimeSeconds": 30,
+      "options": [
+        {
+          "text": "The Beatles"
+        },
+        {
+          "text": "Janet Jackson"
+        },
+        {
+          "text": "Michael Jackson"
+        }
+      ]
+    },
+    {
+      "text": "Who was the first Beatles drummer?",
+      "image": "https://ruizhealytimes.com/wp-content/uploads/2015/02/beatles-1961.jpg",
+      "lifetimeSeconds": 15,
+      "options": [
+        {
+          "text": "John Lennon"
+        },
+        {
+          "text": "Pete Best"
+        },
+        {
+          "text": "Slash"
+        }
+      ]
+    },
+    {
+      "text": "What Did Adolphe Sax Invent?",
+      "image": "https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "lifetimeSeconds": 5,
+      "options": [
+        {
+          "text": "Drum"
+        },
+        {
+          "text": "Flute"
+        },
+        {
+          "text": "Saxophone"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": 2,
+  "title": "General Survey",
+  "image": "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "questions": [
+    {
+      "text": "A dog was arrested in Seville in 1983 for what crime?",
+      "image": "https://spanishnewstoday.com/images/articles/22/03/1756831__11648718022_large.jpg",
+      "lifetimeSeconds": 10,
+      "options": [
+        {
+          "text": "Handbag Snatching"
+        },
+        {
+          "text": "Steal a Hot dog"
+        },
+        {
+          "text": "Scamming a cat"
+        }
+      ]
+    },
+    {
+      "text": "Who was the 31st president of the U.S.?",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/President_Hoover_portrait.jpg/1200px-President_Hoover_portrait.jpg",
+      "lifetimeSeconds": 15,
+      "options": [
+        {
+          "text": "John Bush"
+        },
+        {
+          "text": "Abraham Lincoln"
+        },
+        {
+          "text": "Herbert c Hoover"
+        }
+      ]
+    },
+    {
+      "text": "What did Snoop Dogg change his name to in 2012?",
+      "image": "https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "lifetimeSeconds": 5,
+      "options": [
+        {
+          "text": "Justin Bieber"
+        },
+        {
+          "text": "Snoop Lion"
+        },
+        {
+          "text": "Bad Bunny"
+        }
+      ]
+    }
+  ]
+}

@@ -3,22 +3,20 @@ import { useWeb3 } from '@/context/Web3Context';
 import { useTokenBalance } from '@usedapp/core';
 import { PlusOutlined } from '@ant-design/icons';
 
-import Container from '@/components/Atoms/Container';
-import config from '@/shared/config';
-import Button from '@/components/Atoms/Button';
-import { formatEth } from '@/shared/utils/format';
-
-import BalanceToken from '@/components/Molecules/BalanceToken';
-import { TitleStyle, WrapperStyle } from './style';
 import ROUTES from '@/routes';
+import Button from '@/components/Atoms/Button';
+import { surveyToken } from '@/config';
+import { formatEth } from '@/shared/utils/format';
+import Container from '@/components/Atoms/Container';
+import BalanceToken from '@/components/Molecules/BalanceToken';
 
-const { contractToken } = config;
+import { TitleStyle, WrapperStyle } from './style';
 
 type DashboardTemplateProps = BaseComponent & {};
 
-const DashboardTemplate = (props: DashboardTemplateProps) => {
+const DashboardTemplate = ({ ...props }: DashboardTemplateProps) => {
   const { account } = useWeb3();
-  const balance = useTokenBalance(contractToken, account);
+  const balance = useTokenBalance(surveyToken, account);
 
   return (
     <Container {...props} size="small">

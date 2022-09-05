@@ -8,6 +8,7 @@ type TextProps = BaseComponent & {
   color?: ColorType;
   margin?: string | number;
   fontSize?: string | number;
+  align?: AlignType;
   lineHeight?: string | number;
   fontWeight?: FontWeightType;
   onClick?: any;
@@ -18,6 +19,7 @@ const Text = ({
   lineHeight,
   fontWeight,
   children,
+  align = 'left',
   color = 'text',
   margin = 'initial',
   ...restAntdProps
@@ -43,6 +45,7 @@ const Text = ({
     <TextStyle
       {...restAntdProps}
       $color={color}
+      $align={align}
       $margin={formatMargin}
       $fontWeight={fontWeight}
       $fontSize={formatFontSize}
