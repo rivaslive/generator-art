@@ -8,7 +8,8 @@ import menu from './menu';
 import { AccountTextStyle, ButtonStyle, ImageStyle } from './style';
 
 const AccountAndNetwork = (props: BaseComponent) => {
-  const { switchNetwork, network, account } = useWeb3();
+  const { switchNetwork, network, account, balanceAccount, balance } =
+    useWeb3();
 
   if (!network) return null;
 
@@ -20,7 +21,13 @@ const AccountAndNetwork = (props: BaseComponent) => {
       placement="bottom"
       trigger={['click']}
       key={`network-${network.chainId}`}
-      overlay={menu({ network, switchNetwork, account })}
+      overlay={menu({
+        network,
+        switchNetwork,
+        account,
+        balanceAccount,
+        balance,
+      })}
       {...props}
     >
       <ButtonStyle

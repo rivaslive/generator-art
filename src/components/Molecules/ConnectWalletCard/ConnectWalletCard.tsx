@@ -2,18 +2,17 @@ import { CreditCardOutlined } from '@ant-design/icons';
 
 import Text from '@/components/Atoms/Text';
 import Button from '@/components/Atoms/Button';
-import { useWeb3 } from '@/context/Web3Context';
 import WrapperWithBorder from '@/components/Atoms/WrapperWithBorder';
 
 import { CardIconStyle, StyleContent } from './style';
 
-type ConnectWalletCardProps = {};
+type ConnectWalletCardProps = BaseComponent & {
+  connect: () => void;
+};
 
-const ConnectWalletCard = (props: ConnectWalletCardProps) => {
-  const { connect } = useWeb3();
-
+const ConnectWalletCard = ({ connect, ...props }: ConnectWalletCardProps) => {
   return (
-    <WrapperWithBorder>
+    <WrapperWithBorder {...props}>
       <StyleContent>
         <CardIconStyle>
           <CreditCardOutlined />

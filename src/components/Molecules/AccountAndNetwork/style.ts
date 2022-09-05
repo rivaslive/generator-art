@@ -1,8 +1,10 @@
+import { Tabs } from 'antd';
 import styled from 'styled-components';
-import Image from '@/components/Atoms/Image';
-import Text from '@/components/Atoms/Text';
-import Button from '@/components/Atoms/Button';
+
 import { ColorType } from '@/styles/theme';
+import Text from '@/components/Atoms/Text';
+import Image from '@/components/Atoms/Image';
+import Button from '@/components/Atoms/Button';
 import MenuWrapper from '@/components/Atoms/MenuWrapper';
 
 export const ImageStyle = styled(Image)`
@@ -75,4 +77,8 @@ export const AccountTextStyle = styled(Text)<{ $width?: number }>`
   width: ${({ $width = 150 }) => $width}px;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const TabStyle = styled(Tabs)`
+  margin-top: 10px;
 `;

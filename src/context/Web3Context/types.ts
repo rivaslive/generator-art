@@ -1,4 +1,5 @@
 import { JsonRpcProvider } from '@ethersproject/providers';
+import {BigNumberish} from 'ethers';
 
 export type Network = {
   name: string;
@@ -11,6 +12,8 @@ export type Web3ContextType = {
   provider?: JsonRpcProvider;
   account: string | null;
   isLoading: boolean;
+  balance?: BigNumberish;
+  balanceAccount?: BigNumberish;
   network: Network | null;
   connect: () => void;
   disconnect: () => void;

@@ -7,11 +7,16 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { useEthers, DEFAULT_SUPPORTED_CHAINS } from '@usedapp/core';
+import {
+  useEthers,
+  DEFAULT_SUPPORTED_CHAINS,
+  useTokenBalance,
+  useEtherBalance,
+} from '@usedapp/core';
 
 import useModal from '@/hooks/useModal';
 import storage from '@/shared/utils/storage';
-import { ETH_ROPSTEN_NETWORK_ID, connectKey } from '@/config';
+import { ETH_ROPSTEN_NETWORK_ID, connectKey, surveyToken } from '@/config';
 import ModalNotExtension from '@/components/Molecules/ModalNotExtension';
 import ModalNetworkNotValid from '@/components/Molecules/ModalNetworkNotValid';
 import type { Network, Web3ContextType } from './types';
@@ -53,6 +58,8 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
     activateBrowserWallet,
     switchNetwork: ethSwitchNetwork,
   } = useEthers();
+  const balance = useTokenBalance(surveyToken, account);
+  const balanceAccount = useEtherBalance(account);
 
   // callbacks
   const connect = useCallback(async () => {
@@ -121,6 +128,8 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
       disconnect,
       switchNetwork,
       isActive,
+      balance,
+      balanceAccount,
       provider: library,
       isLoading: loading || isLoading,
       account: account || null,
@@ -134,6 +143,8 @@ export const Web3Provider = ({ children }: { children?: ReactNode }) => {
     isLoading,
     loading,
     network,
+    balance,
+    balanceAccount,
     library,
     switchNetwork,
   ]);
