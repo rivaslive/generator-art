@@ -1,9 +1,4 @@
-import {
-  Children,
-  cloneElement,
-  ReactElement,
-  useState,
-} from 'react';
+import { Children, cloneElement, ReactElement, useState } from 'react';
 import Option, { OptionType } from './Option';
 import { GroupStyle } from './style';
 

@@ -28,8 +28,8 @@ export const WrapperStyle = styled.div`
   }
 
   ${mediaQueries.tablet} {
-      .only-desk {
-        display: inline-block;
-      }
+    .only-desk {
+      display: inline-block;
+    }
   }
 `;

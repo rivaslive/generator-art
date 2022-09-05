@@ -5,7 +5,7 @@ import type { ColorType } from '@/styles/theme';
 type ButtonProps = {
   $color: ColorType;
   $margin: string;
-  disabled: boolean;
+  disabled?: boolean;
   $withMinWidth: boolean;
   $bgColor: ColorType;
   $borderColor: ColorType;

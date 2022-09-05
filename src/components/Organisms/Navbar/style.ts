@@ -25,7 +25,8 @@ export const HeaderColumnStyle = styled.div`
   align-items: center;
   display: flex;
 
-  .only-desk, button.only-desk {
+  .only-desk,
+  button.only-desk {
     display: none;
   }
 
@@ -34,7 +35,8 @@ export const HeaderColumnStyle = styled.div`
   }
 
   ${mediaQueries.tablet} {
-    .only-desk, button.only-desk {
+    .only-desk,
+    button.only-desk {
       display: inline-block;
     }
 

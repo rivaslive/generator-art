@@ -39,7 +39,7 @@ const zIndex = {
 };
 
 const vars = {
-  borderRadius: '12px'
+  borderRadius: '12px',
 };
 
 export const themeVars = {

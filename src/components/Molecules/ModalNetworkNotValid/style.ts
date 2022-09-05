@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 import { colors } from '@/styles/theme';
 import Image from '@/components/Atoms/Image';
-import {WarningOutlined} from '@ant-design/icons';
+import { WarningOutlined } from '@ant-design/icons';
 
 export const TitleStyle = styled.h3`
   color: ${colors.text};

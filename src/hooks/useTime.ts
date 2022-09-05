@@ -55,13 +55,13 @@ export default function useTime(initialTime: number, startInit = false): Time {
     if (time <= ONE_MINUS) return `${time}s`;
     if (time <= ONE_HOUR) {
       const timeInDecimals = time / ONE_MINUS;
-      const [minus, seconds] = timeInDecimals.toFixed(2).toString().split('.')
-      return `${minus}:${seconds}s`
+      const [minus, seconds] = timeInDecimals.toFixed(2).toString().split('.');
+      return `${minus}:${seconds}s`;
     }
 
     const timeInDecimals = time / ONE_HOUR;
-    const [hours, minus] = timeInDecimals.toFixed(2).toString().split('.')
-    return `${hours}:${minus}m`
+    const [hours, minus] = timeInDecimals.toFixed(2).toString().split('.');
+    return `${hours}:${minus}m`;
   }, [time]);
 
   return [startTime, { stopTime, time: formatTime, finishedTime: time === 0 }];

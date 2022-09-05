@@ -1,5 +1,5 @@
 import Image from '@/components/Atoms/Image';
-import {useWeb3} from '@/context/Web3Context';
+import { useWeb3 } from '@/context/Web3Context';
 import AccountAndNetwork from '@/components/Molecules/AccountAndNetwork';
 import MenuPersonalLinks from '@/components/Molecules/MenuPersonalLinks';
 

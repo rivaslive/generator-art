@@ -3,7 +3,6 @@ import { ArrowRightOutlined } from '@ant-design/icons';
 import Modal from '@/components/Atoms/Modal';
 import { ButtonStyle, IconStyle, TextStyle, TitleStyle } from './style';
 
-
 type ModalNotExtensionProps = BaseComponent & {
   isOpen: boolean;
   onClose?: () => void;

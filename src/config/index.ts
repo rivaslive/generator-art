@@ -13,4 +13,3 @@ export const configWeb3: Config = {
     [Ropsten.chainId]: getDefaultProvider('ropsten'),
   },
 };
-

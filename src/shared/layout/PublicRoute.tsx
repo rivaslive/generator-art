@@ -1,14 +1,14 @@
-import {Spin} from 'antd';
-import {useRouter} from 'next/router';
-import {ReactNode, useEffect, useState} from 'react';
+import { Spin } from 'antd';
+import { useRouter } from 'next/router';
+import { ReactNode, useEffect, useState } from 'react';
 
 import ROUTES from '@/routes';
-import {useWeb3} from '@/context/Web3Context';
+import { useWeb3 } from '@/context/Web3Context';
 
-function PublicRoute({children}: { children: ReactNode }) {
+function PublicRoute({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [notAuth, setNotAuth] = useState(false);
-  const {isLoading, account} = useWeb3();
+  const { isLoading, account } = useWeb3();
 
   useEffect(() => {
     if (!!account && !isLoading) {
@@ -23,7 +23,7 @@ function PublicRoute({children}: { children: ReactNode }) {
     return (
       <Spin
         size="large"
-        style={{textAlign: 'center', margin: '30px 0', display: 'block'}}
+        style={{ textAlign: 'center', margin: '30px 0', display: 'block' }}
       />
     );
 
@@ -32,7 +32,7 @@ function PublicRoute({children}: { children: ReactNode }) {
   return (
     <Spin
       size="large"
-      style={{textAlign: 'center', margin: '30px 0', display: 'block'}}
+      style={{ textAlign: 'center', margin: '30px 0', display: 'block' }}
     />
   );
 }
