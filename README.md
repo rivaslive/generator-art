@@ -5,6 +5,26 @@ This project was created with [Nextjs](https://nextjs.org/)
 # Preview in vercel.
 https://membrane-test-three.vercel.app
 
+[![connect](/public/connect-wallet.png)](/public/membrane.mp4)
+
+### Connect Wallet (Metamask)
+![connect](/public/connect-wallet.png)
+
+### Dashboard
+![connect](/public/dashboard.png)
+
+### Menu Account
+![connect](/public/menu-account.png)
+
+### Start Survey
+![connect](/public/start-survey.png)
+
+### Answering Survey
+![connect](/public/start-survey2.png)
+
+### Submit Survey
+![connect](/public/start-survey3.png)
+
 # Requirements:
 - Next.js (preferred), CRA or custom webpack for the front end infrastructure, taking into
 account for the architecture of the project hierarchy and organization of directories,
