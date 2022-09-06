@@ -5,7 +5,9 @@ This project was created with [Nextjs](https://nextjs.org/)
 # Preview in vercel.
 https://membrane-test-three.vercel.app
 
-[![connect](/public/connect-wallet.png)](/public/membrane.mp4)
+
+https://user-images.githubusercontent.com/39039038/188738841-3c78b91b-d618-4fe0-afdc-4f4d36945895.mp4
+
 
 ### Connect Wallet (Metamask)
 ![connect](/public/connect-wallet.png)
