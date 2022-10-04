@@ -1,0 +1,38 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "module": "Node16",
+    // or "NodeNext"
+    "target": "ESNext",
+    "moduleResolution": "Node16",
+    // or "NodeNext"
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/interfaces"
+    ],
+    "strict": true,
+    "sourceMap": true,
+    "incremental": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/engine/*": [
+        "src/modules/engine/src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
