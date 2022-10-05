@@ -31,4 +31,8 @@ export class DataRepository<T> {
   update(id: ID, item: UpdateQuery<T>) {
     return this._repository.findByIdAndUpdate(id, item);
   }
+
+  deleteOneAndDelete(filter: { id: ID, user: ID, status: any }) {
+    return this._repository.findOneAndDelete(filter);
+  }
 }

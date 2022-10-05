@@ -18,7 +18,7 @@ export type VariantType = {
   files: FileTypeInVariant[];
 };
 
-export type Status = 'building' | 'preview' | 'finished';
+export type Status = 'preview' | 'building' | 'cancelled' | 'finished';
 
 export type Layer = {
   name: string;

@@ -10,12 +10,30 @@ export const FileSchema = new Schema<FileType>({
   isNone: { type: Boolean, default: false },
 });
 
+FileSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform(doc, ret) {
+    ret.id = ret._id;
+    delete ret._id;
+  },
+});
+
 export const VariantSchema = new Schema<VariantType>({
   name: { type: String, required: true },
   path: { type: String, required: true },
   weight: { type: Number, required: true },
   description: { type: String, default: '' },
   files: [FileSchema],
+});
+
+VariantSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform(doc, ret) {
+    ret.id = ret._id;
+    delete ret._id;
+  },
 });
 
 export const LayerSchema = new Schema<Layer>({
@@ -27,11 +45,11 @@ export const LayerSchema = new Schema<Layer>({
   variants: [VariantSchema],
 });
 
-// LayerSchema.set('toJSON', {
-//   virtuals: true,
-//   versionKey: false,
-//   transform(doc, ret) {
-//     ret.id = ret._id;
-//     delete ret._id;
-//   },
-// });
+LayerSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform(doc, ret) {
+    ret.id = ret._id;
+    delete ret._id;
+  },
+});

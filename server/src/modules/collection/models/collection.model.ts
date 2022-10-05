@@ -1,9 +1,8 @@
 import { model, Schema } from 'mongoose';
 
+import type { CollectionType } from './collection.interface';
 import { LayerSchema } from './collection.schemas';
-import type { CollectionType, Status } from './collection.interface';
-
-const status: Status[] = ['preview', 'building', 'finished'];
+import { status } from '../shared/status';
 
 const CollectionSchema = new Schema<CollectionType>({
   name: { type: String, required: true },
