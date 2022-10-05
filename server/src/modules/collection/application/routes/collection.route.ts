@@ -4,10 +4,12 @@ import validateMiddleware from '@/shared/middlewares/validatingFiles';
 
 import {
   addFileLayerSchema,
+  addFileToVariantLayerSchema,
   addVariantLayerSchema,
   createLayerSchema,
   createSchema,
   deleteFileLayerSchema,
+  deleteFileVariantLayerSchema,
   deleteLayerSchema,
   deleteVariantLayerSchema,
 } from '../../models/collection.validate';
@@ -21,13 +23,17 @@ import {
   deleteLayerCollection,
   addVariantLayerCollection,
   addFileLayerCollection,
+  addFileToVariantLayer,
+  deleteFileVariantLayer,
+  deleteCollection,
 } from '../service';
 
 const router = createModuleRoute();
 
+// collection
 router.get('/', withAuth, getAllCollections);
 router.post('/generate/:collectionId', withAuth, generateArtCollection);
-
+router.delete('/delete/:collectionId', withAuth, deleteCollection);
 router.post(
   '/create',
   withAuth,
@@ -35,18 +41,12 @@ router.post(
   createCollection
 );
 
+// layers
 router.post(
   '/create-layer/:collectionId',
   withAuth,
   validateMiddleware(createLayerSchema),
   createLayerCollection
-);
-
-router.post(
-  '/add-file-layer/:collectionId',
-  withAuth,
-  validateMiddleware(addFileLayerSchema),
-  addFileLayerCollection
 );
 
 router.delete(
@@ -56,25 +56,52 @@ router.delete(
   deleteLayerCollection
 );
 
+// files
+// add file to layer
+router.post(
+  '/file-layer/:collectionId',
+  withAuth,
+  validateMiddleware(addFileLayerSchema),
+  addFileLayerCollection
+);
+
+// delete file to layer
 router.delete(
-  '/delete-file-layer/:collectionId',
+  '/file-layer/:collectionId',
   withAuth,
   validateMiddleware(deleteFileLayerSchema),
   deleteFileLayerCollection
 );
 
+// variants
+// add variant to layer
 router.post(
-  '/add-variant-layer/:collectionId',
+  '/variant-layer/:collectionId',
   withAuth,
   validateMiddleware(addVariantLayerSchema),
   addVariantLayerCollection
 );
 
+// delete variant to layer
 router.delete(
-  '/delete-variant-layer/:collectionId',
+  '/variant-layer/:collectionId',
   withAuth,
   validateMiddleware(deleteVariantLayerSchema),
   deleteVariantLayerCollection
+);
+
+router.post(
+  '/file-variant-layer/:collectionId',
+  withAuth,
+  validateMiddleware(addFileToVariantLayerSchema),
+  addFileToVariantLayer
+);
+
+router.delete(
+  '/file-variant-layer/:collectionId',
+  withAuth,
+  validateMiddleware(deleteFileVariantLayerSchema),
+  deleteFileVariantLayer
 );
 
 export default router;

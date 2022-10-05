@@ -4,7 +4,7 @@ import type { Layer, FileType, VariantType } from './collection.interface';
 
 export const FileSchema = new Schema<FileType>({
   name: { type: String, required: true },
-  path: { type: String, required: true },
+  location: { type: Schema.Types.ObjectId, ref: 'files', required: true },
   description: { type: String, default: '' },
   weight: Number,
   isNone: { type: Boolean, default: false },
@@ -38,7 +38,6 @@ VariantSchema.set('toJSON', {
 
 export const LayerSchema = new Schema<Layer>({
   name: { type: String, required: true },
-  path: { type: String, required: true },
   description: { type: String, default: '' },
   createdAt: { type: Date, default: Date.now },
   files: [FileSchema],

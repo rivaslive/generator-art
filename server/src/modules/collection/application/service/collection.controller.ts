@@ -26,6 +26,22 @@ export const createCollection = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteCollection = async (req: Request, res: Response) => {
+  const { collectionId } = req.params;
+  const { id } = req.user;
+  try {
+    const result = await collectionService.deleteOneAndDelete({
+      id: collectionId,
+      user: id,
+      status: statusLabels.preview,
+    });
+    return SUCCESS_RESPONSE(res, result);
+  } catch (e) {
+    console.log(e);
+    return INTERNAL_SERVER_MESSAGE_RESPONSE(res, 'Internal error server');
+  }
+};
+
 export const createLayerCollection = async (req: Request, res: Response) => {
   const { collectionId } = req.params;
   const { name, path, description } = req.body;
@@ -44,7 +60,6 @@ export const createLayerCollection = async (req: Request, res: Response) => {
     collection.layersInOrder.push({
       files: [],
       name,
-      path,
       description,
     });
     await collection.save();
@@ -55,17 +70,16 @@ export const createLayerCollection = async (req: Request, res: Response) => {
   }
 };
 
-
 export const addFileLayerCollection = async (req: Request, res: Response) => {
   const { collectionId } = req.params;
-  const { name, path, weight, description, layerId } = req.body;
+  const { name, fileId, weight, description, layerId } = req.body;
   const { id } = req.user;
   try {
-    const collection = await collectionService.findOne({
+    const collection = (await collectionService.findOne({
       id: collectionId,
       user: id,
       status: statusLabels.preview,
-    }) as any;
+    })) as any;
 
     if (!collection) {
       return BAD_REQUEST_MESSAGE_RESPONSE(res, 'Not collection found');
@@ -73,7 +87,7 @@ export const addFileLayerCollection = async (req: Request, res: Response) => {
 
     collection.layersInOrder.id(layerId).files.push({
       name,
-      path,
+      location: fileId,
       weight,
       description,
     });
@@ -85,16 +99,47 @@ export const addFileLayerCollection = async (req: Request, res: Response) => {
   }
 };
 
-export const addVariantLayerCollection = async (req: Request, res: Response) => {
+export const addFileToVariantLayer = async (req: Request, res: Response) => {
+  const { collectionId } = req.params;
+  const { name, fileId, description, layerId, variantId } = req.body;
+  const { id } = req.user;
+  try {
+    const collection = (await collectionService.findOne({
+      id: collectionId,
+      user: id,
+      status: statusLabels.preview,
+    })) as any;
+
+    if (!collection) {
+      return BAD_REQUEST_MESSAGE_RESPONSE(res, 'Not collection found');
+    }
+
+    collection.layersInOrder.id(layerId).variants.id(variantId).files.push({
+      name,
+      location: fileId,
+      description,
+    });
+    await collection.save();
+    return SUCCESS_RESPONSE(res, collection);
+  } catch (e) {
+    console.log(e);
+    return INTERNAL_SERVER_MESSAGE_RESPONSE(res, 'Internal error server');
+  }
+};
+
+export const addVariantLayerCollection = async (
+  req: Request,
+  res: Response
+) => {
   const { collectionId } = req.params;
   const { name, path, weight, description, layerId } = req.body;
   const { id } = req.user;
   try {
-    const collection = await collectionService.findOne({
+    const collection = (await collectionService.findOne({
       id: collectionId,
       user: id,
       status: statusLabels.preview,
-    }) as any;
+    })) as any;
 
     if (!collection) {
       return BAD_REQUEST_MESSAGE_RESPONSE(res, 'Not collection found');
@@ -134,6 +179,36 @@ export const deleteFileLayerCollection = async (
     }
 
     collection.layersInOrder.id(layerId).files.id(fileId).remove();
+    await collection.save();
+    return SUCCESS_RESPONSE(res, collection);
+  } catch (e) {
+    console.log(e);
+    return INTERNAL_SERVER_MESSAGE_RESPONSE(res, 'Internal error server');
+  }
+};
+
+export const deleteFileVariantLayer = async (req: Request, res: Response) => {
+  const { collectionId } = req.params;
+  const { fileId, layerId, variantId } = req.body;
+  const { id } = req.user;
+
+  try {
+    const collection = (await collectionService.findOne({
+      id: collectionId,
+      user: id,
+      status: statusLabels.preview,
+    })) as any;
+
+    if (!collection) {
+      return BAD_REQUEST_MESSAGE_RESPONSE(res, 'Not collection found');
+    }
+
+    collection.layersInOrder
+      .id(layerId)
+      .variants.id(variantId)
+      .files.id(fileId)
+      .remove();
+
     await collection.save();
     return SUCCESS_RESPONSE(res, collection);
   } catch (e) {

@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 
 export type FileType = {
   name: string;
-  path: string;
+  location: Types.ObjectId;
   weight?: number;
   isNone?: boolean;
   description?: string;
@@ -22,7 +22,6 @@ export type Status = 'preview' | 'building' | 'cancelled' | 'finished';
 
 export type Layer = {
   name: string;
-  path: string;
   description?: string;
   files: FileType[];
   variants?: VariantType[];
