@@ -40,9 +40,9 @@ class MyDocument extends Document {
       <Html lang="es">
         <Head>
           <meta charSet="utf-8" />
-          {/* Force IE 8/9/10 to use its latest rendering engine  */}
+          {/* Force IE 8/9/10 to use its latest rendering _engine  */}
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          {/* Dropdown rendering engine order  */}
+          {/* Dropdown rendering _engine order  */}
           <meta name="renderer" content="webkit|ie-comp|ie-stand" />
         </Head>
         <body>
