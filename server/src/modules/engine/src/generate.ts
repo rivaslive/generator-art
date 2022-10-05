@@ -1,5 +1,4 @@
 import log from '@/engine/services/log';
-import { buildDir } from '@/engine/config';
 import { CreateArts } from '@/engine/core/createArts';
 import { layerConfigurations } from '@/engine/config/data';
 import { clearPreviusBuild } from '@/engine/services/clean';
@@ -12,7 +11,7 @@ export default (async function createArts(
   const layoutSettings = new LayoutSettings(props);
 
   log('Clearing before build...');
-  clearPreviusBuild(buildDir, layoutSettings.gifOptions.export);
+  clearPreviusBuild(props.pathBuild, layoutSettings.gifOptions.export);
   log('** Clear completed **', { type: 'success' });
 
   const instance = new CreateArts(layoutSettings);

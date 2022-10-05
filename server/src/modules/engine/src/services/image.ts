@@ -1,3 +1,4 @@
+import path from 'path';
 import {
   createCanvas,
   loadImage,
@@ -7,7 +8,6 @@ import {
 } from 'canvas';
 import fs from 'fs';
 import { LayerType } from '@/engine/interfaces/types';
-import { buildDir } from '@/engine/config';
 import { Store } from '@/engine/core/store';
 
 const sha1 = require('sha1');
@@ -91,9 +91,14 @@ export default class Image {
     }
   }
 
-  saveImage(editionCount: number) {
+  saveImage(editionCount: number, buildDir: string) {
+    const imagesDir = path.resolve(buildDir, 'images')
+    if (!fs.existsSync(imagesDir)) {
+      fs.mkdirSync(imagesDir)
+    }
+
     fs.writeFileSync(
-      `${buildDir}/images/${editionCount}.png`,
+      path.resolve(imagesDir, `${editionCount}.png`),
       this.canvas.toBuffer('image/png')
     );
   }
@@ -140,12 +145,18 @@ export default class Image {
     this.attributesList = [];
   }
 
-  saveMetaDataSingleFile(editionCount: number) {
+  saveMetaDataSingleFile(editionCount: number, buildDir: string) {
     const metadata = this.store
       .getMetaDataList()
       .find((meta) => meta.edition === editionCount);
+
+    const jsonDir = path.resolve(buildDir, 'json')
+    if (!fs.existsSync(jsonDir)) {
+      fs.mkdirSync(jsonDir)
+    }
+
     fs.writeFileSync(
-      `${buildDir}/json/${editionCount}.json`,
+      path.resolve(jsonDir, `${editionCount}.json`),
       JSON.stringify(metadata, null, 2)
     );
   }

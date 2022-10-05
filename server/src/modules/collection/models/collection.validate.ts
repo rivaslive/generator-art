@@ -11,9 +11,10 @@ export const createLayerSchema = Joi.object({
 
 export const addFileLayerSchema = Joi.object({
   name: Joi.string().required(),
-  path: Joi.string().required(),
+  fileId: Joi.string().required(),
   layerId: Joi.string().required(),
   weight: Joi.number().required(),
+  isNone: Joi.boolean(),
   description: Joi.string().allow(''),
 });
 
@@ -28,7 +29,6 @@ export const addFileToVariantLayerSchema = Joi.object({
 
 export const addVariantLayerSchema = Joi.object({
   name: Joi.string().required(),
-  path: Joi.string().required(),
   layerId: Joi.string().required(),
   weight: Joi.number().required(),
   description: Joi.string().allow(''),

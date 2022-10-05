@@ -1,0 +1,5 @@
+{
+  "verbose": true,
+  "ignore": ["public", "src/modules/engine/layers", "build"],
+  "ext": "js,json,md,ts,tsx"
+}

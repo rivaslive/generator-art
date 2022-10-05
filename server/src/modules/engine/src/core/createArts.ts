@@ -1,7 +1,8 @@
 import fs from 'fs';
+import path from 'path';
 
 import log from '@/engine/services/log';
-import { buildDir } from '@/engine/config';
+import { layersDir } from '@/engine/config';
 import { Store } from '@/engine/core/store';
 import Image, { ImageType } from '@/engine/services/image';
 import { FileType, LayerType } from '@/engine/interfaces/types';
@@ -10,15 +11,15 @@ import DNAService, { OutSelectVariantType } from '@/engine/services/dna';
 
 const dnaInstance = new DNAService();
 
-const writeMetaData = (data: string) => {
-  fs.writeFileSync(`${buildDir}/json/_metadata.json`, data);
+const writeMetaData = (data: string, buildDir: string) => {
+  fs.writeFileSync(path.resolve(buildDir, 'json', '_metadata.json'), data);
 };
 
 type SelectedFileProps = {
-  path: string;
   name: string;
   variant?: string;
   weight?: number;
+  absolutePath: string;
   description?: string;
   files: FileType[];
 };
@@ -36,24 +37,24 @@ export class CreateArts {
 
   selectLayerFile({
     files,
-    path,
     name,
     weight,
+    absolutePath,
     variant = '',
     description = '',
   }: SelectedFileProps): LayerType | null {
     return dnaInstance.createDnaFile({
       files,
-      path,
       name,
       weight,
+      absolutePath,
       variant,
       description,
     });
   }
 
   preConfigure(): LayerType[] {
-    const { layers } = this.layoutsSettings;
+    const { layers, withAbsolutePath } = this.layoutsSettings;
     const layersInOrder = layers?.layersInOrder || [];
     const layersOutput: LayerType[] = [];
     let beforeVariantName: string = '';
@@ -62,8 +63,8 @@ export class CreateArts {
       if (layer.files.length) {
         const file = this.selectLayerFile({
           files: layer.files,
-          path: layer.path,
           name: layer.name,
+          absolutePath: withAbsolutePath ? '' : layersDir,
           description: layer.description,
         });
         if (!file) {
@@ -79,7 +80,6 @@ export class CreateArts {
           beforeVariantName,
           variants: layer?.variants,
           nameDir: layer.name,
-          absolutePath: layer.path,
         }) as OutSelectVariantType;
 
         if (variant && variant?.files?.length) {
@@ -91,10 +91,10 @@ export class CreateArts {
               ...fil,
               weight: variant.weight,
             })),
-            path: variant.absolutePath,
             name: variant.nameDir,
             weight: variant.weight,
             variant: variant.name,
+            absolutePath: withAbsolutePath ? '' : layersDir,
             description: variant.description,
           });
           if (!file) {
@@ -112,7 +112,11 @@ export class CreateArts {
   }
 
   async generate() {
-    const { layers: layerSettings, imageOptions } = this.layoutsSettings;
+    const {
+      layers: layerSettings,
+      imageOptions,
+      pathBuild,
+    } = this.layoutsSettings;
 
     while (this.store.currentVariantIndex < layerSettings.growEditionSizeTo) {
       const indexEdition = this.store.currentVariantIndex + 1;
@@ -134,18 +138,21 @@ export class CreateArts {
         renderObjectArray.forEach((renderObject) => {
           renderObject && imageInstance.drawElement(renderObject);
         });
-        imageInstance.saveImage(indexEdition);
+        imageInstance.saveImage(indexEdition, pathBuild);
         imageInstance.addMetadata(
           renderObjectArray[0]?.layer as LayerType,
           indexEdition
         );
-        imageInstance.saveMetaDataSingleFile(indexEdition);
+        imageInstance.saveMetaDataSingleFile(indexEdition, pathBuild);
       });
 
       dnaInstance.nextCount();
       this.store.continue();
     }
 
-    writeMetaData(JSON.stringify(this.store.getMetaDataList(), null, 2));
+    writeMetaData(
+      JSON.stringify(this.store.getMetaDataList(), null, 2),
+      pathBuild
+    );
   }
 }

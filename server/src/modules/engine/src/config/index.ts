@@ -24,6 +24,7 @@ export const defaultGifOptions: GifOptions = {
   quality: 100,
   delay: 500,
 };
-export const buildDir = `${rootPath}/build`;
-export const layersDir = process.env.LAYERS_DIR || `${BASE_PATH}/layers`;
+export const buildDir = path.resolve(rootPath, 'build');
+export const layersDir =
+  process.env.LAYERS_DIR || path.resolve(BASE_PATH, 'layers');
 export const WEIGHT_IN_BASE_OF = 100;

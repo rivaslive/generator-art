@@ -3,9 +3,9 @@ import { Model, UpdateQuery } from 'mongoose';
 export class DataRepository<T> {
   private _repository: Model<T>;
 
-  private _populateOnFind: string[];
+  private _populateOnFind: any[];
 
-  constructor(repository: Model<T>, populateOnFind: string[] = []) {
+  constructor(repository: Model<T>, populateOnFind: any[] = []) {
     this._repository = repository;
     this._populateOnFind = populateOnFind;
   }

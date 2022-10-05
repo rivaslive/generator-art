@@ -1,16 +1,17 @@
+import path from 'path';
 import {
   FileType,
   FileTypeInVariant,
   LayerType,
   VariantType,
 } from '@/engine/interfaces/types';
-import { layersDir, WEIGHT_IN_BASE_OF } from '@/engine/config';
+import { WEIGHT_IN_BASE_OF } from '@/engine/config';
 import getRandomArbitrary from '@/engine/utils/getRandomArbitrary';
 
 type SelectedFileProps = {
-  path: string;
   name: string;
   variant?: string;
+  absolutePath: string;
   weight?: number;
   description?: string;
   files: FileType[] | FileTypeInVariant[];
@@ -19,7 +20,6 @@ type SelectedFileProps = {
 type SelectedVariantProps = {
   variants: VariantType[];
   nameDir: string;
-  absolutePath: string;
   beforeVariantName: string;
 };
 
@@ -28,9 +28,7 @@ export type OutSelectVariantType = {
   name: string;
   variant: string;
   weight: number;
-  absolutePath: string;
-  description: string;
-  path: string;
+  description?: string;
   files: FileTypeInVariant[];
 };
 
@@ -93,7 +91,7 @@ export default class DnaService {
         );
       }
 
-      return element.name === `${nameDir  }/${file.name}`;
+      return element.name === `${nameDir}/${file.name}`;
     });
 
     if (dnaIndex !== -1) {
@@ -115,8 +113,8 @@ export default class DnaService {
   createDnaFile({
     files,
     name,
-    path: absolutePath,
     variant,
+    absolutePath,
     description,
     weight,
   }: SelectedFileProps): LayerType | null {
@@ -143,8 +141,9 @@ export default class DnaService {
           nameDir: name,
           opacity: 1,
           bypassDNA: false,
-          absolutePath,
-          path: `${layersDir}/${absolutePath}/${file.path}`,
+          path: absolutePath
+            ? path.resolve(absolutePath, file.path)
+            : file.path,
           blend: 'source-over',
           description: file?.description || description || '',
           weight: file?.weight || weight || WEIGHT_IN_BASE_OF,
@@ -153,8 +152,8 @@ export default class DnaService {
         if (isValidFile.isNew) {
           this.dnaList.push({
             indexes: [this.count],
-            name: `${name  }/${file.name}`,
-            id: `${name  }/${file.name}`,
+            name: `${name}/${file.name}`,
+            id: `${name}/${file.name}`,
             layer: outReturn,
           });
         } else {
@@ -182,7 +181,9 @@ export default class DnaService {
     isNew: boolean;
     isValid: boolean;
   } {
-    const dnaVariantIndex = this.dnaVariantList.findIndex((variant) => variant.name === name && variant.nameDir === nameDir);
+    const dnaVariantIndex = this.dnaVariantList.findIndex(
+      (variant) => variant.name === name && variant.nameDir === nameDir
+    );
 
     if (dnaVariantIndex !== -1) {
       const dna = this.dnaVariantList[dnaVariantIndex];
@@ -204,7 +205,6 @@ export default class DnaService {
     variants,
     nameDir,
     beforeVariantName,
-    absolutePath,
   }: SelectedVariantProps): OutSelectVariantType | null {
     let repeat = true;
     let outReturn: OutSelectVariantType | undefined;
@@ -237,9 +237,7 @@ export default class DnaService {
           name: getVariant.name,
           variant: getVariant.name,
           weight: getVariant.weight,
-          absolutePath: `${absolutePath}/${getVariant.path}`,
           description: getVariant.description,
-          path: getVariant.path,
           files: getVariant.files,
         };
 

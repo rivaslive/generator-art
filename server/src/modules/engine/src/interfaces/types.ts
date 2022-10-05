@@ -10,16 +10,14 @@ export type FileTypeInVariant = Omit<FileType, 'weight' | 'description'>
 
 export type VariantType = {
   name: string,
-  path: string,
   weight: number,
-  description: string,
+  description?: string,
   files: FileTypeInVariant[];
 };
 
 export type Layer = {
   name: string;
-  path: string;
-  description: string;
+  description?: string;
   files: FileType[];
   variants?: VariantType[];
 };
@@ -38,7 +36,6 @@ export type LayerType = {
   bypassDNA: boolean;
   description: string;
   path: string;
-  absolutePath: string;
   isNone?: boolean;
   variant?: string;
 };
@@ -58,6 +55,8 @@ export type GifOptions = {
 
 export type LayoutSettingsProps = {
   layers: LayerSetting;
+  pathBuild: string;
+  withAbsolutePath?: boolean,
   imageOptions?: ImageOptions;
   gifOptions?: GifOptions;
 };

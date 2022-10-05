@@ -25,7 +25,7 @@ const defaultContext: Web3ContextType = {
   active: false,
   isActive: false,
   account: null,
-  isLoading: true,
+  isLoading: false,
   network: null,
   connect() {},
   disconnect() {},

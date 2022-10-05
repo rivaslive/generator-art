@@ -2,13 +2,10 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
-import { DAppProvider } from '@usedapp/core';
 
 // locals imports
 import GlobalStyle from '@/styles/global';
 import { themeVars } from '@/styles/theme';
-import { configWeb3 } from '@/config';
-import { Web3Provider } from '@/context/Web3Context';
 
 // styles
 import '@/styles/antd.less';
@@ -20,12 +17,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Membrane test</title>
       </Head>
       <ThemeProvider theme={themeVars}>
-        <DAppProvider config={configWeb3}>
-          <Web3Provider>
-            <GlobalStyle />
-            <Component {...pageProps} />
-          </Web3Provider>
-        </DAppProvider>
+        <GlobalStyle />
+        <Component {...pageProps} />
       </ThemeProvider>
     </>
   );

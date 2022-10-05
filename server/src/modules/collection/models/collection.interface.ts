@@ -2,17 +2,19 @@ import { Types } from 'mongoose';
 
 export type FileType = {
   name: string;
-  location: Types.ObjectId;
+  location?: Types.ObjectId;
   weight?: number;
   isNone?: boolean;
   description?: string;
 };
 
-type FileTypeInVariant = Omit<FileType, 'weight' | 'description'>;
+type FileTypeInVariant = Omit<
+  FileType,
+  'weight' | 'description' | 'location'
+> & { location: Types.ObjectId };
 
 export type VariantType = {
   name: string;
-  path: string;
   weight: number;
   description: string;
   files: FileTypeInVariant[];

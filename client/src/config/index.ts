@@ -19,3 +19,5 @@ export const configWeb3: Config = {
       : getDefaultProvider('ropsten'),
   },
 };
+
+export const googleId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';

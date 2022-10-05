@@ -7,10 +7,10 @@ import WrapperWithBorder from '@/components/Atoms/WrapperWithBorder';
 import { CardIconStyle, StyleContent } from './style';
 
 type ConnectWalletCardProps = BaseComponent & {
-  connect: () => void;
+  // connect: () => void;
 };
 
-const ConnectDriveCard = ({ connect, ...props }: ConnectWalletCardProps) => {
+const ConnectDriveCard = ({ id, ...props }: ConnectWalletCardProps) => {
   return (
     <WrapperWithBorder {...props}>
       <StyleContent>
@@ -20,7 +20,7 @@ const ConnectDriveCard = ({ connect, ...props }: ConnectWalletCardProps) => {
         <Text margin="24px 0 0" color="white" fontWeight={600}>
           Connect your drive for created arts
         </Text>
-        <Button onClick={connect} margin="24px auto 0">
+        <Button id={id} margin="24px auto 0">
           Connect Google Drive
         </Button>
       </StyleContent>

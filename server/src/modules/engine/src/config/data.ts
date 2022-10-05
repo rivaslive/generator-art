@@ -1,49 +1,42 @@
 import { LayoutSettingsProps } from '@/engine/interfaces/types';
+import { buildDir } from '@/engine/config/index';
 
 const blackSensei = {
   name: 'Black Sensei',
-  path: 'BLACK_SENSEI',
 };
 const redSensei = {
   name: 'Red Sensei',
-  path: 'RED_SENSEI',
 };
 const whiteSensei = {
   name: 'White Sensei',
-  path: 'WHITE_SENSEI',
 };
 const brownSensei = {
   name: 'Brown Sensei',
-  path: 'BROWN_SENSEI',
 };
 const specialEarthSensei = {
   name: 'Special Earth Sensei',
-  path: 'SPECIAL_EARTH_SENSEI',
 };
 const specialElderSensei = {
   name: 'Special Elder Sensei',
-  path: 'SPECIAL_ELDER_SENSEI',
 };
 const specialElectricitySensei = {
   name: 'Special Electricity Sensei',
-  path: 'SPECIAL_ELECTRICITY_SENSEI',
 };
 const specialFireSensei = {
   name: 'Special Fire Sensei',
-  path: 'SPECIAL_FIRE_SENSEI',
 };
 const specialIceSensei = {
   name: 'Special Ice Sensei',
-  path: 'SPECIAL_ICE_SENSEI',
 };
 
 export const layerConfigurations: LayoutSettingsProps = {
+  withAbsolutePath: false,
+  pathBuild: buildDir,
   layers: {
-    growEditionSizeTo: 1,
+    growEditionSizeTo: 5,
     layersInOrder: [
       {
         name: 'Background',
-        path: 'BACKGROUNDS',
         description: 'Background attribute',
         files: [
           {
@@ -86,7 +79,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Shoulder',
-        path: 'SHOULDER',
         description: 'Shoulder accessory attribute',
         files: [
           {
@@ -213,13 +205,11 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Fur',
-        path: 'FUR',
         description: 'Fur skin attribute',
         files: [],
         variants: [
           {
             name: blackSensei.name,
-            path: blackSensei.path,
             weight: 21,
             description: 'Rarity 21 in 100',
             files: [
@@ -231,7 +221,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: whiteSensei.name,
-            path: whiteSensei.path,
             weight: 21,
             description: 'Rarity 21 in 100',
             files: [
@@ -243,7 +232,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: brownSensei.name,
-            path: brownSensei.path,
             weight: 21,
             description: 'Rarity 21 in 100',
             files: [
@@ -255,7 +243,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: redSensei.name,
-            path: redSensei.path,
             weight: 21,
             description: 'Rarity 21 in 100',
             files: [
@@ -267,7 +254,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialEarthSensei.name,
-            path: specialEarthSensei.path,
             weight: 4,
             description: 'Rarity special 4 in 100',
             files: [
@@ -279,7 +265,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialElderSensei.name,
-            path: specialElderSensei.path,
             weight: 2,
             description: 'Rarity special 2 in 100',
             files: [
@@ -291,7 +276,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialElectricitySensei.name,
-            path: specialElectricitySensei.path,
             weight: 4,
             description: 'Rarity special 4 in 100',
             files: [
@@ -303,7 +287,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialFireSensei.name,
-            path: specialFireSensei.path,
             weight: 3,
             description: 'Rarity special 3 in 100',
             files: [
@@ -315,7 +298,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialIceSensei.name,
-            path: specialIceSensei.path,
             weight: 3,
             description: 'Rarity special 3 in 100',
             files: [
@@ -329,7 +311,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Top',
-        path: 'TOPS',
         description: 'Tops attribute',
         files: [
           {
@@ -642,7 +623,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Face',
-        path: 'FACE',
         description: 'Face attribute',
         files: [
           {
@@ -655,7 +635,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Scar',
-        path: 'SCARS',
         description: 'Scars attribute',
         files: [
           {
@@ -733,13 +712,11 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Beard',
-        path: 'BEARDS',
         description: 'Beards attribute',
         files: [],
         variants: [
           {
             name: blackSensei.name,
-            path: blackSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -787,7 +764,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: whiteSensei.name,
-            path: whiteSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -835,7 +811,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: brownSensei.name,
-            path: brownSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -883,7 +858,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: redSensei.name,
-            path: redSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -931,7 +905,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialEarthSensei.name,
-            path: specialEarthSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -943,7 +916,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialElderSensei.name,
-            path: specialElderSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -955,7 +927,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialElectricitySensei.name,
-            path: specialElectricitySensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -967,7 +938,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialFireSensei.name,
-            path: specialFireSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -979,7 +949,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialIceSensei.name,
-            path: specialIceSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -993,13 +962,11 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Hair',
-        path: 'HAIR',
         description: 'Hair attribute',
         files: [],
         variants: [
           {
             name: blackSensei.name,
-            path: blackSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1031,7 +998,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: whiteSensei.name,
-            path: whiteSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1063,7 +1029,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: brownSensei.name,
-            path: brownSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1095,7 +1060,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: redSensei.name,
-            path: redSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1127,7 +1091,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialEarthSensei.name,
-            path: specialEarthSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1139,7 +1102,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialElderSensei.name,
-            path: specialElderSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1151,7 +1113,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialElectricitySensei.name,
-            path: specialElectricitySensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1163,7 +1124,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialFireSensei.name,
-            path: specialFireSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1175,7 +1135,6 @@ export const layerConfigurations: LayoutSettingsProps = {
           },
           {
             name: specialIceSensei.name,
-            path: specialIceSensei.path,
             weight: 100,
             description: 'Rarity 100 in 100',
             files: [
@@ -1189,7 +1148,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Bandana',
-        path: 'BANDANAS',
         description: 'Bandanas attribute',
         files: [
           {
@@ -1256,7 +1214,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Eyes',
-        path: 'EYES',
         description: 'Eyes attribute',
         files: [
           {
@@ -1311,7 +1268,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Ear accessory',
-        path: 'EAR_ACCESSORIES',
         description: 'Ear accessories attribute',
         files: [
           {
@@ -1354,7 +1310,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Mouth accessory',
-        path: 'MOUTH_ACCESSORIES',
         description: 'Mouth accessories description',
         files: [
           {
@@ -1438,7 +1393,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Glasses',
-        path: 'GLASSES',
         description: 'Glasses attribute',
         files: [
           {
@@ -1528,7 +1482,6 @@ export const layerConfigurations: LayoutSettingsProps = {
       },
       {
         name: 'Fighter accessory',
-        path: 'FIGHTER_ACCESSORIES',
         description: 'Fighter accessories attribute',
         files: [
           {

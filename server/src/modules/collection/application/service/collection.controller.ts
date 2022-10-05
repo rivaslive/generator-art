@@ -1,11 +1,18 @@
+import path from 'path';
+
+import { buildPath } from '@/config';
 import { Request, Response } from '@/interfaces/types';
+import { statusLabels } from '@/modules/collection/shared/status';
 import { collectionServiceRepository } from '@/modules/collection/repositories';
+import formatCollection from '@/modules/collection/application/shared/formatCollection';
 import {
   BAD_REQUEST_MESSAGE_RESPONSE,
   INTERNAL_SERVER_MESSAGE_RESPONSE,
+  SUCCESS_MESSAGE_RESPONSE,
   SUCCESS_RESPONSE,
 } from '@/shared/response';
-import { statusLabels } from '@/modules/collection/shared/status';
+
+import queueCollection from './collection.generate';
 
 const collectionService = collectionServiceRepository;
 
@@ -44,7 +51,7 @@ export const deleteCollection = async (req: Request, res: Response) => {
 
 export const createLayerCollection = async (req: Request, res: Response) => {
   const { collectionId } = req.params;
-  const { name, path, description } = req.body;
+  const { name, description } = req.body;
   const { id } = req.user;
   try {
     const collection = await collectionService.findOne({
@@ -72,7 +79,7 @@ export const createLayerCollection = async (req: Request, res: Response) => {
 
 export const addFileLayerCollection = async (req: Request, res: Response) => {
   const { collectionId } = req.params;
-  const { name, fileId, weight, description, layerId } = req.body;
+  const { name, fileId, weight, description, layerId, isNone } = req.body;
   const { id } = req.user;
   try {
     const collection = (await collectionService.findOne({
@@ -89,6 +96,7 @@ export const addFileLayerCollection = async (req: Request, res: Response) => {
       name,
       location: fileId,
       weight,
+      isNone,
       description,
     });
     await collection.save();
@@ -132,7 +140,7 @@ export const addVariantLayerCollection = async (
   res: Response
 ) => {
   const { collectionId } = req.params;
-  const { name, path, weight, description, layerId } = req.body;
+  const { name, weight, description, layerId } = req.body;
   const { id } = req.user;
   try {
     const collection = (await collectionService.findOne({
@@ -270,13 +278,42 @@ export const deleteLayerCollection = async (req: Request, res: Response) => {
 
 export const generateArtCollection = async (req: Request, res: Response) => {
   const { collectionId } = req.params;
+  const { countToGenerate } = req.body;
   const { id } = req.user;
   try {
     const collection = await collectionService.findOne({
       id: collectionId,
       user: id,
+      status: statusLabels.preview,
     });
-    return SUCCESS_RESPONSE(res, collection);
+    if (!collection) {
+      return BAD_REQUEST_MESSAGE_RESPONSE(res, 'Not collection found');
+    }
+
+    collection.countToGenerate = countToGenerate;
+    collection.status = statusLabels.building;
+    const collectionForEngine = formatCollection(collection.layersInOrder);
+
+    await collection.save();
+
+    queueCollection(
+      {
+        imageOptions: undefined,
+        pathBuild: path.resolve(buildPath, collection.user.id.toString()),
+        layers: {
+          layersInOrder: collectionForEngine,
+          growEditionSizeTo: 5,
+        },
+        user: collection.user?.toJSON
+          ? collection.user.toJSON()
+          : collection.user,
+      },
+      async () => {
+        collection.status = statusLabels.finished;
+        await collection.save();
+      }
+    );
+    return SUCCESS_MESSAGE_RESPONSE(res, 'Queue in process');
   } catch (e) {
     console.log(e);
     return INTERNAL_SERVER_MESSAGE_RESPONSE(res, 'Internal error server');
