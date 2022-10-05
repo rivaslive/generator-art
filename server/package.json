@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon -r ts-node --esm -r tsconfig-paths/register server.ts",
-    "generate": "ts-node --esm -r tsconfig-paths/register src/modules/_engine/src/main.ts",
+    "generate": "ts-node --esm -r tsconfig-paths/register src/modules/engine/src/main.ts",
     "build": "tsc && tsc-alias",
     "build:watch": "concurrently \"tsc -w\" \"tsc-alias -w\"",
     "start": "node dist/main.js",

@@ -8,7 +8,7 @@ export const FORMAT_OUTPUT_IMAGE = {
   smoothing: false,
 };
 export const DNA_DELIMITER = "-";
-export const BASE_PATH = path.resolve(rootPath, 'src/modules/_engine');
+export const BASE_PATH = path.resolve(rootPath, 'src/modules/engine');
 export const NETWORKS = {
   eth: 'eth',
   sol: 'sol',
