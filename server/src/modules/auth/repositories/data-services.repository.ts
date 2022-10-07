@@ -31,7 +31,7 @@ export class DataRepository<T> {
 
     const repository = this._repository as unknown as Model<UserType>;
     const query = repository.findOne({ email: googleAuth.email });
-    const user = await query.select('+jwt') as any;
+    const user = (await query.select('+jwt')) as any;
 
     if (!user) {
       return {
@@ -136,5 +136,11 @@ export class DataRepository<T> {
 
   update(id: ID, item: UpdateQuery<T>) {
     return this._repository.findByIdAndUpdate(id, item);
+  }
+
+  findByWallet(wallet: string, provider: string) {
+    const user = this._repository.findOne({ wallet, provider });
+    if (user) return user;
+    throw new Error('User not found')
   }
 }

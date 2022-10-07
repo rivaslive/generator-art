@@ -1,19 +1,24 @@
+import { useRouter } from 'next/router';
 import Image from '@/components/Atoms/Image';
-import { useWeb3 } from '@/context/Web3Context';
-import AccountAndNetwork from '@/components/Molecules/AccountAndNetwork';
-import MenuPersonalLinks from '@/components/Molecules/MenuPersonalLinks';
+import ConnectWalletButton from '@/components/Atoms/ConectWalletButton';
 
+import Button from '@/components/Atoms/Button';
+import MenuPersonalLinks from '@/components/Molecules/MenuPersonalLinks';
 import {
   HeaderColumnStyle,
   HeaderContainerStyle,
   HeaderContentStyle,
   HeaderStyle,
 } from './style';
+import ROUTES from '@/config/routes';
+import Link from 'next/link';
 
 type NavbarProps = BaseComponent & {};
 
 const Navbar = (props: NavbarProps) => {
-  const { isActive } = useWeb3();
+  const { pathname } = useRouter();
+
+  const isGallery = pathname === ROUTES.GALLERY.path;
 
   return (
     <HeaderStyle {...props}>
@@ -28,12 +33,30 @@ const Navbar = (props: NavbarProps) => {
             />
             <Image
               alt="Membrane icon"
+              width={50}
               className="only-mobile"
-              src="https://assets.website-files.com/62b354280426aa3e41c0b1ec/62b354280426aa1addc0b210_logo-mobile.svg"
+              src="/brand-icon.png"
             />
           </HeaderColumnStyle>
           <HeaderColumnStyle>
-            {isActive && <AccountAndNetwork />}
+            <Link href={ROUTES.GALLERY.path} passHref>
+              <a>
+                <Button
+                  withMinWidth={false}
+                  bgColor="transparent"
+                  style={{
+                    marginRight: 20,
+                    borderRadius: 0,
+                    borderBottom: '2px solid transparent',
+                    borderBottomColor: isGallery ? '#4285F4' : 'transparent',
+                  }}
+                  color={isGallery ? 'primary' : 'text'}
+                >
+                  Gallery
+                </Button>
+              </a>
+            </Link>
+            <ConnectWalletButton className="only-desk flex" />
             <MenuPersonalLinks />
           </HeaderColumnStyle>
         </HeaderContentStyle>

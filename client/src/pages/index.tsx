@@ -7,7 +7,7 @@ function DashboardPage() {
   return (
     <Layout>
       <Head>
-        <title>Membrane test - Dashboard</title>
+        <title>Generator arts - Dashboard</title>
       </Head>
       <PrivateRoute>
         <DashboardTemplate />

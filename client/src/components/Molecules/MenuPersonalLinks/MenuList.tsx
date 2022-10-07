@@ -3,17 +3,16 @@ import {
   GithubOutlined,
   GlobalOutlined,
   LinkedinOutlined,
-  LogoutOutlined,
 } from '@ant-design/icons';
+import { WalletDisconnectButton } from '@solana/wallet-adapter-react-ui';
 
 import ROUTES from '@/config/routes';
-import MenuItem from './MenuItem';
 import MenuWrapper from '@/components/Atoms/MenuWrapper';
-import Text from '@/components/Atoms/Text';
+import MenuItem from './MenuItem';
 
-type MenuListProps = { disconnect: () => void; isActive: boolean };
+type MenuListProps = { isActive: boolean, onLogout: any };
 
-const menuList = ({ disconnect, isActive }: MenuListProps) => {
+const menuList = ({ isActive, onLogout }: MenuListProps) => {
   const items = [
     {
       key: 'git',
@@ -40,14 +39,10 @@ const menuList = ({ disconnect, isActive }: MenuListProps) => {
   if (isActive) {
     // @ts-ignore
     items.push({ type: 'divider' });
+    // @ts-ignore
     items.push({
       key: 'disconnect',
-      icon: <LogoutOutlined />,
-      label: (
-        <Text onClick={disconnect} fontWeight={600}>
-          Disconnect
-        </Text>
-      ),
+      label: <WalletDisconnectButton onClick={onLogout} />,
     });
   }
 

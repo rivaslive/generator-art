@@ -112,7 +112,7 @@ This project was created with [Atomic Design Pattern](https://bradfrost.com/blog
 Some of the components are:
 
 ### Atoms
-- Button
+- LogoutButton
 - Container
 - GroupOption
 - Image
@@ -127,7 +127,7 @@ Some of the components are:
 ## Molecules
 - AccountAndNetwork
 - BalanceToken
-- ConnectDriveCard
+- ConnectWalletCard
 - MenuPersonalLinks
 - ModalNetworkNotValid
 - ModalNotExtension
@@ -135,7 +135,7 @@ Some of the components are:
 ## Organisms
 - Layout
 - Navbar
-- QuizPresentation
+- CompleteProfile
 - SurveyQuestion
 - SurveyResult
 
@@ -169,8 +169,8 @@ Some of the components are:
 └── src
     ├── components
     │ ├── Atoms
-    │ │ ├── Button
-    │ │ │ ├── Button.tsx
+    │ │ ├── LogoutButton
+    │ │ │ ├── LogoutButton.tsx
     │ │ │ ├── index.ts
     │ │ │ └── style.ts
     │ │ ├── ...
@@ -187,7 +187,7 @@ Some of the components are:
     │ │     └── style.ts
     │ ├── Template
     │ │ └── ConnectWallet
-    │ │     ├── ConnectDrive.tsx
+    │ │     ├── SignUp.tsx
     │ │     ├── index.ts
     │ │     └── style.ts
     ├── config

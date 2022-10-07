@@ -3,31 +3,24 @@ import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
 
 import ROUTES from '@/config/routes';
-import { useWeb3 } from '@/context/Web3Context';
+import { useAuth } from '@/context/Auth';
 
 function PublicRoute({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const [notAuth, setNotAuth] = useState(false);
-  const { isLoading, account } = useWeb3();
+  const [passAuth, setPassAuth] = useState(false);
+  const { loading, isAuthenticated } = useAuth();
 
   useEffect(() => {
-    if (!!account && !isLoading) {
-      setNotAuth(false);
-      router?.push(ROUTES.DASHBOARD.path);
-    } else {
-      setNotAuth(true);
+    if (!isAuthenticated && !loading) {
+      setPassAuth(true);
     }
-  }, [router, isLoading, account]);
+    if (isAuthenticated && !loading) {
+      setPassAuth(false);
+      router.replace(ROUTES.DASHBOARD.path).then();
+    }
+  }, [router, loading, isAuthenticated]);
 
-  if (!!account || isLoading)
-    return (
-      <Spin
-        size="large"
-        style={{ textAlign: 'center', margin: '30px 0', display: 'block' }}
-      />
-    );
-
-  if (notAuth) return <>{children}</>;
+  if (passAuth) return <>{children}</>;
 
   return (
     <Spin

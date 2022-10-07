@@ -10,8 +10,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: currentColor;
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   code {
@@ -24,7 +27,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .ant-message {
-    margin-top: 65px;
+    margin-top: 85px;
+  }
+
+  .ant-notification.ant-notification-topRight {
+    top: 85px !important;
   }
 `;
 

@@ -1,7 +1,7 @@
 import { Dropdown, DropdownProps } from 'antd';
 import { DashOutlined } from '@ant-design/icons';
 
-import { useWeb3 } from '@/context/Web3Context';
+import { useAuth } from '@/context/Auth';
 import Button from '@/components/Atoms/Button';
 import menuList from './MenuList';
 
@@ -9,13 +9,14 @@ type MenuPersonalLinksProps = BaseComponent &
   Omit<DropdownProps, 'overlay' | 'trigger' | 'arrow'>;
 
 const MenuPersonalLinks = (props: MenuPersonalLinksProps) => {
-  const { disconnect, isActive } = useWeb3();
+  const { isAuthenticated, logout } = useAuth();
+
   return (
     <Dropdown
       {...props}
       arrow
       trigger={['click']}
-      overlay={menuList({ disconnect, isActive })}
+      overlay={menuList({ isActive: isAuthenticated, onLogout: logout })}
     >
       <Button
         margin="0 0 0 10px"

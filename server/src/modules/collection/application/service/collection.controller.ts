@@ -19,6 +19,20 @@ const collectionService = collectionServiceRepository;
 export const createCollection = async (req: Request, res: Response) => {
   const { name } = req.body;
   const { id } = req.user;
+
+  try {
+    const currentCollection = await collectionService.findOne({
+      user: id,
+      status: statusLabels.preview,
+    });
+
+    if (currentCollection) {
+      return SUCCESS_RESPONSE(res, currentCollection);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
   try {
     const newCollection = await collectionService.create({
       name,

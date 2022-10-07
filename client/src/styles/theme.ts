@@ -1,5 +1,5 @@
 export const colors = {
-  primary: '#127dff',
+  primary: '#4285F4',
   accent: '#9c27b0',
   error: '#f44336',
   warning: '#F5A524',
@@ -7,6 +7,11 @@ export const colors = {
   success: '#4caf50',
   black: '#000',
   white: '#fff',
+  primaryOpacity: '#bddaf5',
+  secondaryOpacity: '#f9d199',
+  errorOpacity: '#41130f',
+  infoOpacity: '#0d273b',
+  accentOpacity: '#5b2464',
   transparent: 'transparent',
   semiTransparent: 'rgba(0, 0, 0, 0.1)',
   lightSemiTransparent: 'rgba(100, 100, 100, 0.1)',
@@ -20,8 +25,6 @@ export const colors = {
   disabledText: 'rgba(255, 255, 255, 0.3)',
   borderColor: '#313538',
   shadowInput: 'rgb(77, 77, 77)',
-  infoOpacity: '#0d273b',
-  errorOpacity: '#300313',
 };
 
 export type ColorType = keyof typeof colors;
@@ -49,6 +52,8 @@ export const themeVars = {
 };
 
 export const mediaQueries = {
+  smallMobile: '@media (min-width: 560px)',
+  mobile: '@media (min-width: 768px)',
   tablet: '@media (min-width: 768px)',
   desktop: '@media (min-width: 1200px)',
 };

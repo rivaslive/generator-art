@@ -12,7 +12,7 @@ const create = async (
   try {
     return Jwt.sign(
       {
-        id: user.id,
+        id: user.id?.toString ? user.id.toString() : user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
