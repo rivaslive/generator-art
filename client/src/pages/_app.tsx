@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 // locals imports
 import GlobalStyle from '@/styles/global';
 import { themeVars } from '@/styles/theme';
-import AuthProvider from '@/context/Auth/Auth'
+import AuthProvider from '@/context/Auth/Auth';
 
 // styles
 import '@/styles/antd.less';

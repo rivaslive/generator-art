@@ -118,7 +118,15 @@ export const completeProfile = async (req: Request, res: Response) => {
     await user?.save();
 
     return SUCCESS_RESPONSE(res, user);
-  } catch (e) {
+  } catch (err) {
+    const isEmailUnique =
+      // @ts-ignore
+      err?.message?.includes('E11000') && err?.message?.includes('email');
+
+    if (isEmailUnique) {
+      return BAD_REQUEST_MESSAGE_RESPONSE(res, 'Email already exist');
+    }
+
     return INTERNAL_SERVER_MESSAGE_RESPONSE(
       res,
       // @ts-ignore

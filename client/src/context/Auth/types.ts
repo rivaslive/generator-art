@@ -12,6 +12,7 @@ export type UserType = {
 
 export type AuthContextType = {
   isAuthenticated: boolean;
+  jwt: string;
   user: null | UserType;
   completeProfile(values: Omit<CompleteProfile, 'wallet' | 'provider'>): Promise<void>;
   loading: boolean;

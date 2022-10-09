@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useState } from 'react';
 
 import { useAuth } from '@/context/Auth';
 import ROUTES from '@/config/routes';
+import { GalleryProvider } from '@/context/Gallery';
 
 function PrivateRoute({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -20,7 +21,9 @@ function PrivateRoute({ children }: { children: ReactNode }) {
     }
   }, [router, loading, isAuthenticated]);
 
-  if (passAuth) return <>{children}</>;
+  if (passAuth) {
+    return <GalleryProvider>{children}</GalleryProvider>;
+  }
 
   return (
     <Spin

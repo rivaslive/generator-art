@@ -1,14 +1,10 @@
 import axios from 'axios';
-import { authKey, baseUrl } from '@/config';
-import storage from '@/utils/storage';
+import { baseUrl } from '@/config';
 
 export const instance = axios.create({
   baseURL: baseUrl,
 });
 
-export const getJWT = () => {
-  if (typeof window === 'undefined') {
-    return 'Bearer ';
-  }
-  return `Bearer ${storage.getItem(authKey) ?? ''}`;
+export const getJWT = (jwt: string) => {
+  return `Bearer ${jwt}`;
 };

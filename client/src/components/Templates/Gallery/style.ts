@@ -33,3 +33,9 @@ export const WrapperStyle = styled.div`
     }
   }
 `;
+
+export const ActionStyle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;

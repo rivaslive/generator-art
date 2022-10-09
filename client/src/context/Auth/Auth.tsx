@@ -27,6 +27,7 @@ import {
 const defaultValue: AuthContextType = {
   isAuthenticated: false,
   user: null,
+  jwt: '',
   loading: true,
   async completeProfile() {},
   logout() {},
@@ -122,8 +123,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     }
 
-    console.log({ walletAddress, walletProvider });
-
     if (walletAddress && walletProvider) {
       setLoadingCallbacks(true);
 
@@ -151,6 +150,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const out = useMemo(() => {
     return {
       user,
+      jwt: user?.jwt || '',
       loading,
       logout,
       loadingCallbacks,

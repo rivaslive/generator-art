@@ -1,5 +1,6 @@
-import { useCallback, useState } from 'react';
+import {useCallback, useMemo, useState} from 'react';
 import { instance, getJWT } from '@/shared/services/api';
+import {useAuth} from '@/context/Auth';
 
 interface UserPostFetchProps {
   type?: 'post' | 'put' | 'delete';
@@ -21,7 +22,9 @@ export default function useMutationFetch<T, Request = any>(
   path: string,
   props?: UserPostFetchProps,
 ): ReturnHook<T, Request> {
-  const type = props?.type || 'post';
+  const { jwt } = useAuth();
+  const type = useMemo(() => props?.type || 'post', [props?.type]);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<T | null>(null);
   const [errors, setErrors] = useState<string | null>(null);
@@ -31,7 +34,7 @@ export default function useMutationFetch<T, Request = any>(
       let err: any = null;
       setErrors(null);
       setLoading(true);
-      const Authorization = getJWT();
+      const Authorization = getJWT(jwt);
 
       const options: any = {
         headers: {
@@ -66,7 +69,7 @@ export default function useMutationFetch<T, Request = any>(
         data: null,
       };
     },
-    [path, type],
+    [path, type, jwt],
   );
 
   return [

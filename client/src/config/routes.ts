@@ -30,6 +30,7 @@ const ROUTES = {
 
 export const API_ROUTES = {
   AUTH: '/auth',
+  GALLERY: '/gallery',
   COMPLETE_PROFILE: '/auth/complete-profile',
 };
 

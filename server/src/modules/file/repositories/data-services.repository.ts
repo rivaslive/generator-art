@@ -14,6 +14,12 @@ export class DataRepository<T> {
     return this._repository.findById(id).populate(this._populateOnFind);
   }
 
+  findAllByUser(userId: ID) {
+    return this._repository
+      .find({ user: userId })
+      .populate(this._populateOnFind);
+  }
+
   create(item: T) {
     return this._repository.create(item);
   }

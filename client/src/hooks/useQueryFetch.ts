@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import { instance, getJWT } from '@/shared/services/api';
+import {useAuth} from '@/context/Auth';
 
 type FilterType = { key: string; value?: string | number }[];
 
@@ -13,8 +14,9 @@ export default function useQueryFetch<T>(
   path: string,
   props?: UserGetFetchProps,
 ) {
-  const skip = props?.skip;
-  const filtersProp = props?.filters;
+  const { jwt } = useAuth();
+  const skip = useMemo(() => props?.skip, [props?.skip]);
+  const filtersProp = useMemo(() => props?.filters, [props?.filters]);
 
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<T | null>(null);
@@ -23,7 +25,7 @@ export default function useQueryFetch<T>(
   const getData = useCallback(
     async (opts?: { filter?: FilterType; options?: AxiosRequestConfig }) => {
       setLoading(true);
-      const Authorization = getJWT();
+      const Authorization = getJWT(jwt);
 
       const options: any = {
         ...opts?.options,
@@ -61,7 +63,7 @@ export default function useQueryFetch<T>(
       }
       setLoading(false);
     },
-    [path, filtersProp],
+    [jwt, filtersProp, path],
   );
 
   useEffect(() => {

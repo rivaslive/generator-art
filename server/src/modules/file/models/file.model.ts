@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { ASSETS_URL } from '@/config';
+import {ASSETS_URL, SERVER_URL} from '@/config';
 import { FileType } from './file.interface';
 
 const fileSchema = new Schema<FileType>(
@@ -7,6 +7,7 @@ const fileSchema = new Schema<FileType>(
     mimetype: { type: String, required: true },
     originalName: { type: String, required: true },
     fileName: { type: String, required: true },
+    folder: { type: [String], default: [] },
     size: { type: Number },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: false },
     createdAt: {
@@ -19,7 +20,7 @@ const fileSchema = new Schema<FileType>(
       url: {
         get(): string {
           // @ts-ignore
-          return `${ASSETS_URL}/${this.fileName || ''}`;
+          return `${SERVER_URL}/gallery/public/${this.fileName || ''}`;
         },
       },
     },
